@@ -1,0 +1,67 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background: #F7F7F7;
+}
+
+.node {
+	width: 120px;
+	min-height: 80px; /* tile height + room for jesus */
+	/*margin: 1px;*/
+	position: relative;
+}
+
+.node-children {
+	position: relative;
+	left: 120px; /* node width */
+}
+
+.node-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*background-color: #FFF;*/
+}
+.node-content > .inner {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.tile {
+	width: 60px;
+	height: 60px;
+	margin: auto;
+	position: relative;
+	z-index: 100;
+	background: #2A81B4;
+}
+
+.link {
+	width: 4px;
+	/* (height set in js) */
+	position: absolute;
+	/* (top & left set in js) */
+	z-index: 10;
+	border-radius: 2px;
+	background: #929292;
+	/* hacks to make line smoother */
+	outline: 1px solid transparent;
+	-webkit-backface-visibility: hidden;
+	/* rotation anchor position */
+	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-ms-transform-origin: top center;
+	-o-transform-origin: top center;
+	transform-origin: top center;
+	/* (rotation set in js) */
+}
+
+.subtree {
+	position: relative;
+	z-index: 100;
+	border-left: 4px solid #929292;
+	border-right: 4px solid #929292;
+	background: #F7F7F7;
+}
