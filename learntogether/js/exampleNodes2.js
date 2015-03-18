@@ -1,4 +1,4 @@
-var example2data = [
+var exampleNodes = [
     {
         "title": "water",
         "children": [
@@ -12,16 +12,16 @@ var example2data = [
                                 "title": "ocean",
                                 "children": [
                                     {
-                                        "title": "Planetary_boundary_layer"
+                                        "title": "Planetary boundary layer"
                                     },
                                     {
                                         "title": "Troposphere",
                                         "children": [
                                             {
-                                                "title": "Space_Shuttle_Endeavour",
+                                                "title": "Space Shuttle Endeavour",
                                                 "children": [
                                                     {
-                                                        "title": "Planetary_boundary_layer"
+                                                        "title": "Planetary boundary layer"
                                                     }
                                                 ]
                                             },
@@ -38,7 +38,7 @@ var example2data = [
                         ],
                         "children": [
                             {
-                                "title": "Space_Shuttle_Endeavour"
+                                "title": "Space Shuttle Endeavour"
                             },
                             {
                                 "title": "Friction"
@@ -54,10 +54,10 @@ var example2data = [
                         "title": "Troposphere",
                         "children": [
                             {
-                                "title": "Space_Shuttle_Endeavour",
+                                "title": "Space Shuttle Endeavour",
                                 "subtree": [
                                     {
-                                        "title": "Planetary_boundary_layer"
+                                        "title": "Planetary boundary layer"
                                     },
                                     {
                                         "title": "Troposphere",

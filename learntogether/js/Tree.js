@@ -159,19 +159,39 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		tileEl.className = 'tile vertically-center';
 		contentEl.appendChild(tileEl);
 
+		// shape element
+		var shapeEl;
+		shapeEl = document.createElement('div');
+		shapeEl.className = 'shape shape-square';
+		tileEl.appendChild(shapeEl);
+
+		// level element
+		var levelEl;
+		levelEl = document.createElement('div');
+		levelEl.className = 'level';
+		levelEl.textContent = Math.ceil(Math.random() * 5);
+		shapeEl.appendChild(levelEl);
+
+		// title element
+		var titleEl;
+		titleEl = document.createElement('div');
+		titleEl.className = 'title';
+		titleEl.textContent = node.title;
+		tileEl.appendChild(titleEl);
+
 		// make link?
 		if (linkSourceEl) {
 			this.links.push(new Link({
 				containerEl: treeEl,
 				fromEl: linkSourceEl,
-				toEl: tileEl
+				toEl: shapeEl
 			}));
 		}
 
 		// make children?
 		if (node.children) {
 			node.children.forEach(function (child) {
-				this.addTreeNode(child, childrenEl, treeEl, tileEl);
+				this.addTreeNode(child, childrenEl, treeEl, shapeEl);
 			}, this);
 		}
 
@@ -247,6 +267,40 @@ Tree.prototype.adjustForSubtrees = function (treeEl) {
 
 
 /**
+ * Adjust width and height for .node elements
+ * that contain tiles
+ *
+ * @param {HTMLElement} treeEl 	Tree's element, default to this.treeEl
+ */
+Tree.prototype.adjustForTiles = function (treeEl) {
+
+	// default to this tree
+	treeEl = treeEl || this.treeEl;
+
+	// adjust any .subtree elements
+	var tileElList = treeEl.querySelectorAll(
+		'.node > .node-content > .tile');
+	Array.prototype.forEach.call(tileElList, function (tileEl) {
+
+		// find node containing this subtree
+		var nodeEl = tileEl.parentNode.parentNode;
+
+		// adjust node size
+		nodeEl.style.minWidth = tileEl.offsetWidth + 'px';
+		nodeEl.style.minHeight = tileEl.offsetHeight + 'px';
+
+		// nudge over node children
+		Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
+			if (childEl.className.match(/node-children/)) {
+				childEl.style.left = tileEl.offsetWidth + 'px';
+			}
+		});
+
+	});
+};
+
+
+/**
  * Verticall center any marked element in this (or any) tree
  * (any element with "vertically-center" class)
  *
@@ -288,6 +342,7 @@ Tree.prototype.updateLinks = function() {
  */
 Tree.prototype.updateTree = function() {
 	this.adjustForSubtrees();
+	this.adjustForTiles();
 	this.verticallyCenterAll();
 	this.updateLinks();
 };

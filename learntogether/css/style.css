@@ -30,12 +30,39 @@ html, body {
 }
 
 .tile {
-	width: 60px;
-	height: 60px;
+	width: 100px;
 	margin: auto;
 	position: relative;
 	z-index: 100;
+
+}
+.tile .shape {
+	width: 60px;
+	height: 60px;
+	margin: auto;
 	background: #2A81B4;
+}
+.tile .shape-square {
+
+}
+.tile .shape-circle {
+
+}
+.tile .shape .level {
+	width: 30px;
+	height: 30px;
+	margin: auto;
+	position: relative;
+	top: 15px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 2px;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+.tile .title {
+	padding: 6px;
+	text-align: center;
 }
 
 .link {

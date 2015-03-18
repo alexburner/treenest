@@ -1,4 +1,4 @@
-var example1data = [
+var exampleNodes = [
     {
         "title": "root",
         "children": [
@@ -6,7 +6,7 @@ var example1data = [
                 "title": "ocean",
                 "children": [
                     {
-                        "title": "Planetary_boundary_layer"
+                        "title": "Planetary boundary layer"
                     },
                     {
                         "title": "Troposphere",
@@ -15,13 +15,13 @@ var example1data = [
                                 "title": "ocean",
                                 "children": [
                                     {
-                                        "title": "Planetary_boundary_layer"
+                                        "title": "Planetary boundary layer"
                                     },
                                     {
                                         "title": "Troposphere",
                                         "children": [
                                             {
-                                                "title": "Space_Shuttle_Endeavour"
+                                                "title": "Space Shuttle Endeavour"
                                             },
                                             {
                                                 "title": "Friction"
@@ -36,7 +36,7 @@ var example1data = [
                         ],
                         "children": [
                             {
-                                "title": "Space_Shuttle_Endeavour"
+                                "title": "Space Shuttle Endeavour"
                             },
                             {
                                 "title": "Friction"
@@ -52,19 +52,19 @@ var example1data = [
                 "title": "normal mode",
                 "children": [
                     {
-                        "title": "Mode_(disambiguation)",
+                        "title": "Mode (disambiguation)",
                         "children": [
                             {
                                 "title": "ocean",
                                 "children": [
                                     {
-                                        "title": "Planetary_boundary_layer",
+                                        "title": "Planetary boundary layer",
                                         "children": [
                                             {
-                                                "title": "Space_Shuttle_Endeavour",
+                                                "title": "Space Shuttle Endeavour",
                                                 "children": [
                                                     {
-                                                        "title": "Space_Shuttle_Endeavour"
+                                                        "title": "Space Shuttle Endeavour"
                                                     }
                                                 ]
                                             }
@@ -74,7 +74,7 @@ var example1data = [
                                         "title": "Troposphere",
                                         "children": [
                                             {
-                                                "title": "Space_Shuttle_Endeavour"
+                                                "title": "Space Shuttle Endeavour"
                                             },
                                             {
                                                 "title": "Friction"
@@ -88,13 +88,13 @@ var example1data = [
                                                 "title": "ocean",
                                                 "children": [
                                                     {
-                                                        "title": "Planetary_boundary_layer"
+                                                        "title": "Planetary boundary layer"
                                                     },
                                                     {
                                                         "title": "Troposphere",
                                                         "children": [
                                                             {
-                                                                "title": "Space_Shuttle_Endeavour"
+                                                                "title": "Space Shuttle Endeavour"
                                                             },
                                                             {
                                                                 "title": "Friction"
