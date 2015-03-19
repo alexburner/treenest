@@ -49,14 +49,12 @@ Link.prototype.updateElement = function () {
 };
 
 Link.prototype.setPosition = function (x1, x2, y1, y2) {
-
 	// calculate new length & angle
 	var xDiff = x2 - x1;
 	var yDiff = y2 - y1;
 	var length = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
 	var angle = 180 / Math.PI * Math.acos(yDiff / length);
 	if (x2 > x1) angle *= -1;
-
 	// set new position
 	this.linkEl.style['height'] = length + 'px';
 	this.linkEl.style['top'] = y1 + 'px';

@@ -1,70 +1,33 @@
 var exampleNodes = [
     {
-        "title": "water",
+        "title": "This is the First Node",
         "children": [
             {
-                "title": "ocean",
+                "title": "This is the Second Node",
                 "children": [
                     {
-                        "title": "Troposphere",
-                        "subtree": [
+                        "title": "This is the Third Node",
+                        "children": [
                             {
-                                "title": "ocean",
+                                "title": "This is the Fourth Node",
                                 "children": [
                                     {
-                                        "title": "Planetary boundary layer"
-                                    },
-                                    {
-                                        "title": "Troposphere",
+                                        "title": "This is the Fifth Node",
                                         "children": [
-                                            {
-                                                "title": "Space Shuttle Endeavour",
-                                                "children": [
-                                                    {
-                                                        "title": "Planetary boundary layer"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Friction"
-                                            }
+
                                         ]
-                                    },
-                                    {
-                                        "title": "Hydrosphere"
                                     }
                                 ]
                             }
-                        ],
-                        "children": [
-                            {
-                                "title": "Space Shuttle Endeavour"
-                            },
-                            {
-                                "title": "Friction"
-                            }
                         ]
-                    }
-                ]
-            },
-            {
-                "title": "ocean",
-                "children": [
+                    },
                     {
-                        "title": "Troposphere",
+                        "title": "This is the 2nd Third Node",
                         "children": [
                             {
-                                "title": "Space Shuttle Endeavour",
-                                "subtree": [
-                                    {
-                                        "title": "Planetary boundary layer"
-                                    },
-                                    {
-                                        "title": "Troposphere",
-                                    },
-                                    {
-                                        "title": "Hydrosphere"
-                                    }
+                                "title": "This is the 2nd Fourth Node",
+                                "children": [
+
                                 ]
                             }
                         ]

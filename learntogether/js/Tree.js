@@ -159,6 +159,14 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		tileEl.className = 'tile vertically-center';
 		contentEl.appendChild(tileEl);
 
+		// ghost title element
+		// var ghostTitleEl;
+		// ghostTitleEl = document.createElement('div');
+		// ghostTitleEl.className = 'title';
+		// ghostTitleEl.textContent = node.title;
+		// ghostTitleEl.style.visibility = 'hidden';
+		// tileEl.appendChild(ghostTitleEl);
+
 		// shape element
 		var shapeEl;
 		shapeEl = document.createElement('div');
@@ -177,7 +185,7 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		titleEl = document.createElement('div');
 		titleEl.className = 'title';
 		titleEl.textContent = node.title;
-		tileEl.appendChild(titleEl);
+		shapeEl.appendChild(titleEl);
 
 		// make link?
 		if (linkSourceEl) {
@@ -342,7 +350,7 @@ Tree.prototype.updateLinks = function() {
  */
 Tree.prototype.updateTree = function() {
 	this.adjustForSubtrees();
-	this.adjustForTiles();
+	//this.adjustForTiles();
 	this.verticallyCenterAll();
 	this.updateLinks();
 };

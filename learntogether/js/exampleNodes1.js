@@ -1,111 +1,20 @@
 var exampleNodes = [
     {
-        "title": "root",
+        "title": "This is the First Node",
         "children": [
             {
-                "title": "ocean",
+                "title": "This is the Second Node",
                 "children": [
                     {
-                        "title": "Planetary boundary layer"
-                    },
-                    {
-                        "title": "Troposphere",
-                        "subtree": [
-                            {
-                                "title": "ocean",
-                                "children": [
-                                    {
-                                        "title": "Planetary boundary layer"
-                                    },
-                                    {
-                                        "title": "Troposphere",
-                                        "children": [
-                                            {
-                                                "title": "Space Shuttle Endeavour"
-                                            },
-                                            {
-                                                "title": "Friction"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Hydrosphere"
-                                    }
-                                ]
-                            }
-                        ],
+                        "title": "This is the Third Node",
                         "children": [
                             {
-                                "title": "Space Shuttle Endeavour"
-                            },
-                            {
-                                "title": "Friction"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Hydrosphere"
-                    }
-                ]
-            },
-            {
-                "title": "normal mode",
-                "children": [
-                    {
-                        "title": "Mode (disambiguation)",
-                        "children": [
-                            {
-                                "title": "ocean",
+                                "title": "This is the Fourth Node",
                                 "children": [
                                     {
-                                        "title": "Planetary boundary layer",
+                                        "title": "This is the Fifth Node",
                                         "children": [
-                                            {
-                                                "title": "Space Shuttle Endeavour",
-                                                "children": [
-                                                    {
-                                                        "title": "Space Shuttle Endeavour"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Troposphere",
-                                        "children": [
-                                            {
-                                                "title": "Space Shuttle Endeavour"
-                                            },
-                                            {
-                                                "title": "Friction"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Hydrosphere",
-                                        "children": [
-                                            {
-                                                "title": "ocean",
-                                                "children": [
-                                                    {
-                                                        "title": "Planetary boundary layer"
-                                                    },
-                                                    {
-                                                        "title": "Troposphere",
-                                                        "children": [
-                                                            {
-                                                                "title": "Space Shuttle Endeavour"
-                                                            },
-                                                            {
-                                                                "title": "Friction"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "title": "Hydrosphere"
-                                                    }
-                                                ]
-                                            }
+
                                         ]
                                     }
                                 ]

@@ -2,11 +2,14 @@ html, body {
 	margin: 0;
 	padding: 0;
 	background: #F7F7F7;
+	font-family: sans-serif;
+	font-weight: 300;
+	color: #333;
 }
 
 .node {
 	width: 120px;
-	min-height: 80px; /* tile height + room for jesus */
+	min-height: 120px; /* tile height + room for jesus */
 	/*margin: 1px;*/
 	position: relative;
 }
@@ -40,6 +43,8 @@ html, body {
 	width: 60px;
 	height: 60px;
 	margin: auto;
+	position: relative;
+	/*border-radius: 100px;*/
 	background: #2A81B4;
 }
 .tile .shape-square {
@@ -55,14 +60,21 @@ html, body {
 	position: relative;
 	top: 15px;
 	text-align: center;
-	line-height: 30px;
-	border-radius: 2px;
+	font-size: 20px;
+	line-height: 34px;
+	color: #8C8B86;
 	background: #FFFFFF;
 	overflow: hidden;
 }
 .tile .title {
+	position: absolute;
+	top: 100%;
+	left: -20px;
+	right: -20px;
 	padding: 6px;
 	text-align: center;
+	font-size: 15px;
+	line-height: 18px;
 }
 
 .link {
@@ -71,7 +83,7 @@ html, body {
 	position: absolute;
 	/* (top & left set in js) */
 	z-index: 10;
-	border-radius: 2px;
+	border-radius: 4px;
 	background: #929292;
 	/* hacks to make line smoother */
 	outline: 1px solid transparent;
