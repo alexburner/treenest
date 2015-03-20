@@ -7,6 +7,10 @@ html, body {
 	color: #333;
 }
 
+.tree {
+	margin: auto;
+}
+
 .node {
 	width: 120px;
 	min-height: 120px; /* tile height + room for jesus */

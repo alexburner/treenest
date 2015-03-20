@@ -11,7 +11,7 @@ function Tree(args) {
 	this.links = [];
 	this.nodes = args.nodes;
 	// elements
-	this.treeEl = args.treeEl;
+	this.containerEl = args.containerEl;
 	// construction
 	this.makeTree();
 	this.updateTree();
@@ -23,13 +23,24 @@ function Tree(args) {
  * Used for both main class tree
  * And any nested subtrees
  *
- * @param  {Array} nodes 			Data for nodes and any children
- * @param  {HTMLElement} treeEl 	Element to place tree nodes inside
+ * @param  {Array} nodes 				Data for nodes and any children
+ * @param  {HTMLElement} containerEl 	Element to place tree nodes inside
  */
-Tree.prototype.makeTree = function(nodes, treeEl) {
+Tree.prototype.makeTree = function(nodes, containerEl) {
 	// default to self, but also support subtrees
 	nodes = nodes || this.nodes;
-	treeEl = treeEl || this.treeEl;
+	containerEl = containerEl || this.containerEl;
+
+	/**
+	 * Tree (will get whole width)
+	 */
+
+	// tree element
+	var treeEl;
+	treeEl = document.createElement('div');
+	treeEl.className = 'tree';
+	containerEl.appendChild(treeEl);
+
 
 	/**
 	 * Root node
@@ -44,7 +55,7 @@ Tree.prototype.makeTree = function(nodes, treeEl) {
 	// children element
 	var childrenEl;
 	childrenEl = document.createElement('div');
-	childrenEl.className = 'root-children vertically-center';
+	childrenEl.className = 'node-children vertically-center';
 	nodeEl.appendChild(childrenEl);
 
 	/**
@@ -65,7 +76,8 @@ Tree.prototype.makeTree = function(nodes, treeEl) {
 	 */
 
 	// set tree element width
-	treeEl.style.minWidth = this.findTreeWidth(treeEl) + 'px';
+	var treeWidth = this.findTreeWidth(treeEl);
+	treeEl.style.minWidth = treeWidth + 'px';
 
 };
 
@@ -244,15 +256,12 @@ Tree.prototype.findTreeWidth = function(treeEl) {
  * Adjust width and height for .node elements
  * that contain nested subtrees
  *
- * @param {HTMLElement} treeEl 	Tree's element, default to this.treeEl
+ * @param {HTMLElement} containerEl 	Element to look within
  */
-Tree.prototype.adjustForSubtrees = function (treeEl) {
+Tree.prototype.adjustForSubtrees = function (containerEl) {
 
-	// default to this tree
-	treeEl = treeEl || this.treeEl;
-
-	// adjust any .subtree elements
-	var subtreeElList = treeEl.querySelectorAll(
+	// find subtree elements
+	var subtreeElList = containerEl.querySelectorAll(
 		'.node > .node-content > .subtree');
 	Array.prototype.forEach.call(subtreeElList, function (subtreeEl) {
 
@@ -271,6 +280,7 @@ Tree.prototype.adjustForSubtrees = function (treeEl) {
 		});
 
 	});
+
 };
 
 
@@ -278,15 +288,12 @@ Tree.prototype.adjustForSubtrees = function (treeEl) {
  * Adjust width and height for .node elements
  * that contain tiles
  *
- * @param {HTMLElement} treeEl 	Tree's element, default to this.treeEl
+ * @param {HTMLElement} containerEl 	Element to look within
  */
-Tree.prototype.adjustForTiles = function (treeEl) {
-
-	// default to this tree
-	treeEl = treeEl || this.treeEl;
+Tree.prototype.adjustForTiles = function (containerEl) {
 
 	// adjust any .subtree elements
-	var tileElList = treeEl.querySelectorAll(
+	var tileElList = containerEl.querySelectorAll(
 		'.node > .node-content > .tile');
 	Array.prototype.forEach.call(tileElList, function (tileEl) {
 
@@ -312,15 +319,12 @@ Tree.prototype.adjustForTiles = function (treeEl) {
  * Verticall center any marked element in this (or any) tree
  * (any element with "vertically-center" class)
  *
- * @param {HTMLElement} treeEl 	Tree's element, default to this.treeEl
+ * @param {HTMLElement} containerEl 	Element to look within
  */
-Tree.prototype.verticallyCenterAll = function (treeEl) {
-
-	// default to this tree
-	treeEl = treeEl || this.treeEl;
+Tree.prototype.verticallyCenterAll = function (containerEl) {
 
 	// adjust any .vertically-center elements
-	var elList = treeEl.querySelectorAll('.vertically-center');
+	var elList = containerEl.querySelectorAll('.vertically-center');
 	Array.prototype.forEach.call(elList, function (el) {
 
 		// find parent and own height
@@ -349,8 +353,8 @@ Tree.prototype.updateLinks = function() {
  * Update all the things in this class
  */
 Tree.prototype.updateTree = function() {
-	this.adjustForSubtrees();
-	//this.adjustForTiles();
-	this.verticallyCenterAll();
+	this.adjustForSubtrees(this.containerEl);
+	//this.adjustForTiles(this.containerEl);
+	this.verticallyCenterAll(this.containerEl);
 	this.updateLinks();
 };
