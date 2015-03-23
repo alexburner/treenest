@@ -9,6 +9,7 @@ html, body {
 
 .tree {
 	margin: auto;
+	position: relative;
 }
 
 .node {

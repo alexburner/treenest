@@ -55,7 +55,7 @@ Tree.prototype.makeTree = function(nodes, containerEl) {
 	// children element
 	var childrenEl;
 	childrenEl = document.createElement('div');
-	childrenEl.className = 'node-children vertically-center';
+	childrenEl.className = 'root-children vertically-center';
 	nodeEl.appendChild(childrenEl);
 
 	/**
@@ -261,21 +261,21 @@ Tree.prototype.findTreeWidth = function(treeEl) {
 Tree.prototype.adjustForSubtrees = function (containerEl) {
 
 	// find subtree elements
-	var subtreeElList = containerEl.querySelectorAll(
-		'.node > .node-content > .subtree');
-	Array.prototype.forEach.call(subtreeElList, function (subtreeEl) {
+	var treeElList = containerEl.querySelectorAll(
+		'.node > .node-content > .subtree > .tree');
+	Array.prototype.forEach.call(treeElList, function (treeEl) {
 
 		// find node containing this subtree
-		var nodeEl = subtreeEl.parentNode.parentNode;
+		var nodeEl = treeEl.parentNode.parentNode.parentNode;
 
 		// adjust node size
-		nodeEl.style.minWidth = subtreeEl.offsetWidth + 'px';
-		nodeEl.style.minHeight = subtreeEl.offsetHeight + 'px';
+		nodeEl.style.minWidth = treeEl.offsetWidth + 'px';
+		nodeEl.style.minHeight = treeEl.offsetHeight + 'px';
 
 		// nudge over node children
 		Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
 			if (childEl.className.match(/node-children/)) {
-				childEl.style.left = subtreeEl.offsetWidth + 'px';
+				childEl.style.left = treeEl.offsetWidth + 'px';
 			}
 		});
 
