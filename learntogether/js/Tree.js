@@ -8,7 +8,6 @@
  */
 function Tree(args) {
 	// objects
-	this.nodes = args.nodes;
 	this.links = [];
 	this.subtrees = [];
 	// elements
@@ -16,7 +15,7 @@ function Tree(args) {
 	this.treeEl = null;
 	this.nodeEls = [];
 	// construction
-	this.makeTree();
+	this.makeTree(args.nodes);
 	this.updateTree();
 }
 
@@ -67,8 +66,10 @@ Tree.setNodeSize = function (nodeEl) {
 
 /**
  * Create the html/css tree
+ *
+ * @param {Array} nodes 	Root node children
  */
-Tree.prototype.makeTree = function() {
+Tree.prototype.makeTree = function (nodes) {
 
 	/**
 	 * Tree (will get whole width)
@@ -103,12 +104,8 @@ Tree.prototype.makeTree = function() {
 	 */
 
 	// add each node
-	this.nodes.forEach(function (node) {
-		this.addTreeNode(
-			node,
-			childrenEl,
-			treeEl
-		);
+	nodes.forEach(function (node) {
+		this.addTreeNode(node, childrenEl);
 	}, this);
 
 };
@@ -121,10 +118,9 @@ Tree.prototype.makeTree = function() {
  *
  * @param {Object} node         		Data for node and children
  * @param {HTMLElement} containerEl  	Specific container element for node
- * @param {HTMLElement} treeEl       	Overarching tree element for node
  * @param {HTMLElement} linkSourceEl 	(optional) Element to link to node from
  */
-Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
+Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 
 	/**
 	 * Base case
@@ -142,9 +138,6 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 	nodeEl.className = 'node';
 	containerEl.appendChild(nodeEl);
 
-	// save reference
-	this.nodeEls.push(nodeEl);
-
 	// content element
 	var innerEl;
 	innerEl = document.createElement('div');
@@ -156,6 +149,9 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 	childrenEl = document.createElement('div');
 	childrenEl.className = 'children vertically-center';
 	nodeEl.appendChild(childrenEl);
+
+	// save reference
+	this.nodeEls.push(nodeEl);
 
 	// subtree or tile?
 	if (node.subtree) {
@@ -176,31 +172,10 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 			containerEl: subtreeEl
 		}));
 
-		// make link?
-		if (linkSourceEl) {
-			this.links.push(new Link({
-				containerEl: treeEl,
-				fromEl: linkSourceEl,
-				toEl: subtreeEl
-			}));
-		}
-
-		// make children?
-		if (node.children) {
-			node.children.forEach(function (child) {
-				this.addTreeNode(
-					child,
-					childrenEl,
-					treeEl,
-					subtreeEl
-				);
-			}, this);
-		}
-
 	} else {
 
 		/**
-		 * Node tile
+		 * Node content
 		 */
 
 		// tile element
@@ -229,22 +204,27 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		titleEl.textContent = node.title;
 		shapeEl.appendChild(titleEl);
 
-		// make link?
-		if (linkSourceEl) {
-			this.links.push(new Link({
-				containerEl: treeEl,
-				fromEl: linkSourceEl,
-				toEl: shapeEl
-			}));
-		}
+	}
 
-		// make children?
-		if (node.children) {
-			node.children.forEach(function (child) {
-				this.addTreeNode(child, childrenEl, treeEl, shapeEl);
-			}, this);
-		}
+	/**
+	 * Make link?
+	 */
+	if (linkSourceEl) {
+		this.links.push(new Link({
+			containerEl: this.treeEl,
+			fromEl: linkSourceEl,
+			toEl: nodeEl
+		}));
+	}
 
+
+	/**
+	 * Make children?
+	 */
+	if (node.children) {
+		node.children.forEach(function (child) {
+			this.addTreeNode(child, childrenEl, nodeEl);
+		}, this);
 	}
 
 };
