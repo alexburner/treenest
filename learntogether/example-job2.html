@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ex Job 2</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css">
+
+		#tree1 {
+			padding: 20px;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="tree1"></div>
+
+	<script type="text/javascript" src="js/exampleNodes-job2.js"></script>
+	<script type="text/javascript" src="js/exampleCreates.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/Link.js"></script>
+	<script type="text/javascript" src="js/Tree.js"></script>
+	<script type="text/javascript">
+
+		var tree1 = new Tree({
+			nodes: exampleNodes,
+			containerEl: document.getElementById('tree1'),
+			createNodeContent: createJobNodeContent
+		});
+
+	</script>
+</body>
+</html>

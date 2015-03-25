@@ -87,15 +87,19 @@ html, body {
  */
 
 .job {
+	padding: 40px;
+	position: relative;
+}
+
+.job .shape {
 	width: 290px;
 	height: 225px;
-	margin: 0 40px;
 	position: relative;
 	border: 1px solid #417CA2;
 	background: #2A81B4;
 }
 
-.job .title {
+.job .shape .title {
 	height: auto;
 	padding: 0 50px;
 	position: relative;
@@ -106,7 +110,7 @@ html, body {
 	color: white;
 }
 
-.job .progress {
+.job .shape .progress {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -121,29 +125,23 @@ html, body {
  */
 
 .skill {
-	width: 124px;
-	height: 124px;
-	margin: auto;
+	padding: 30px;
 	position: relative;
 }
 
 .skill .shape {
 	width: 60px;
 	height: 60px;
-	margin: auto;
 	position: relative;
-	border-radius: 2px;
 	border: 1px solid #417CA2;
 	background: #2A81B4;
 }
 
 .skill .shape-square {
-
+	border-radius: 2px;
 }
 
 .skill .shape-circle {
-	width: 60px;
-	height: 60px;
 	border-radius: 100px;
 }
 

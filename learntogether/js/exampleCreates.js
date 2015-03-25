@@ -14,7 +14,7 @@ function createSkillNodeContent(node) {
 	// shape element
 	var shapeEl;
 	shapeEl = document.createElement('div');
-	shapeEl.className = 'shape vertically-center';
+	shapeEl.className = 'shape';
 	switch (node.type) {
 		case "Soft Skill":
 			shapeEl.className += " shape-circle";
@@ -56,9 +56,14 @@ function createSkillNodeContent(node) {
 function createJobNodeContent(node) {
 
 	// job element
-	var jobEll;
-	jobEll = document.createElement('div');
-	jobEll.className = 'job vertically-center';
+	var jobEl;
+	jobEl = document.createElement('div');
+	jobEl.className = 'job vertically-center';
+
+	// shape element
+	var shapeEl;
+	shapeEl = document.createElement('div');
+	shapeEl.className = 'shape';
 
 	// title element
 	var titleEl;
@@ -73,10 +78,11 @@ function createJobNodeContent(node) {
 	progressEl.textContent = node.skillsComplete + ' / ' + node.skillsTotal;
 
 	// assembly
-	jobEll.appendChild(titleEl);
-	jobEll.appendChild(progressEl);
+	jobEl.appendChild(shapeEl);
+	shapeEl.appendChild(titleEl);
+	shapeEl.appendChild(progressEl);
 
 	// return top level
-	return jobEll;
+	return jobEl;
 
 }
