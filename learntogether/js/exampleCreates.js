@@ -13,7 +13,7 @@ function createSkillNodeContent(node) {
 
 	// shape element
 	var shapeEl;
-	shapeEl = document.createElement('div');
+	shapeEl = document.createElement('a');
 	shapeEl.className = 'shape';
 	switch (node.type) {
 		case "Soft Skill":
@@ -62,7 +62,7 @@ function createJobNodeContent(node) {
 
 	// shape element
 	var shapeEl;
-	shapeEl = document.createElement('div');
+	shapeEl = document.createElement('a');
 	shapeEl.className = 'shape';
 
 	// title element

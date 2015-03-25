@@ -227,7 +227,7 @@ Tree.prototype.updateLinks = function() {
  */
 Tree.prototype.updateWidth = function() {
 	var nodeElsSize = util.findElementsSize(this.nodeEls);
-	this.treeEl.style.minWidth = nodeElsSize.width + 'px';
+	this.treeEl.style.width = nodeElsSize.width + 'px';
 };
 
 

@@ -39,15 +39,7 @@ var exampleNodes = [
                         "skillsComplete": 0,
                         "skillsTotal": 7,
                         "children": [
-                            {
-                                "title": "Product Manager II",
-                                "type": "Hard Skill",
-                                "skillsComplete": 0,
-                                "skillsTotal": 6,
-                                "children": [
 
-                                ]
-                            }
                         ]
                     }
                 ]

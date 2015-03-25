@@ -54,15 +54,26 @@ util.verticallyCenterElements = function (containerEl) {
 	// for every .vertically-center element
 	var elList = containerEl.querySelectorAll('.vertically-center');
 	Array.prototype.forEach.call(elList, function (el) {
-
-		// find height of self and positioning parent
-		var parentHeight = el.offsetParent.offsetHeight;
-		var selfHeight = el.offsetHeight;
-
-		// center element
-		el.style.top = (parentHeight / 2) - (selfHeight / 2) + 'px';
-
+		util.verticallyCenterElement(el);
 	});
+
+};
+
+
+/**
+ * Vertically center a specific element
+ * (assumes element is positioned absolutely, fixed, or relative)
+ *
+ * @param  {HTMLElement} el  	Element to vertically center
+ */
+util.verticallyCenterElement = function (el) {
+
+	// find height of self and positioning parent
+	var parentHeight = el.offsetParent.offsetHeight;
+	var selfHeight = el.offsetHeight;
+
+	// center element
+	el.style.top = (parentHeight / 2) - (selfHeight / 2) + 'px';
 
 };
 
