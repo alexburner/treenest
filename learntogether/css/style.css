@@ -8,37 +8,35 @@ html, body {
 }
 
 .tree {
+	/* width set in JS */
+	/* height adjusts natively */
 	margin: auto;
 	position: relative;
 }
 
 .node {
-	width: 120px;
-	min-height: 120px; /* tile height + room for jesus */
-	/*margin: 1px;*/
+	/* min size set in JS */
+	/* based on .inner's size */
 	position: relative;
 }
 
-.node-children {
-	position: relative;
-	left: 120px; /* node width */
-}
-
-.node-content {
+.node > .inner {
+	width: auto;
+	height: auto;
 	position: absolute;
 	top: 0;
 	left: 0;
-	right: 0;
-	bottom: 0;
-	/*background-color: #FFF;*/
 }
-.node-content > .inner {
-	min-width: 100%;
-	min-height: 100%;
+
+.node > .children {
+	position: relative;
+	/* left set in JS */
+	/* used to shift kids out of parent */
 }
 
 .tile {
-	width: 100px;
+	width: 124px;
+	height: 124px;
 	margin: auto;
 	position: relative;
 	z-index: 100;
@@ -49,14 +47,17 @@ html, body {
 	height: 60px;
 	margin: auto;
 	position: relative;
-	/*border-radius: 100px;*/
+	border-radius: 2px;
+	border: 1px solid #777;
 	background: #2A81B4;
 }
 .tile .shape-square {
 
 }
 .tile .shape-circle {
-
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
 }
 .tile .shape .level {
 	width: 30px;
@@ -68,6 +69,8 @@ html, body {
 	font-size: 20px;
 	line-height: 34px;
 	color: #8C8B86;
+	border-radius: 2px;
+	border: 1px solid #9CBAD9;
 	background: #FFFFFF;
 	overflow: hidden;
 }
@@ -103,8 +106,12 @@ html, body {
 }
 
 .subtree {
+	padding: 10px 20px;
 	position: relative;
 	z-index: 100;
+}
+
+.subtree > .tree {
 	border-left: 4px solid #929292;
 	border-right: 4px solid #929292;
 	background: #F7F7F7;

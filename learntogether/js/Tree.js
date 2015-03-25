@@ -8,10 +8,13 @@
  */
 function Tree(args) {
 	// objects
-	this.links = [];
 	this.nodes = args.nodes;
+	this.links = [];
+	this.subtrees = [];
 	// elements
 	this.containerEl = args.containerEl;
+	this.treeEl = null;
+	this.nodeEls = [];
 	// construction
 	this.makeTree();
 	this.updateTree();
@@ -19,17 +22,53 @@ function Tree(args) {
 
 
 /**
- * Create the html/css tree
- * Used for both main class tree
- * And any nested subtrees
+ * STATIC (not tied to class instance)
+ * Set .node minimum size based on .inner
  *
- * @param  {Array} nodes 				Data for nodes and any children
- * @param  {HTMLElement} containerEl 	Element to place tree nodes inside
+ * @param  {HTMLElement} nodeEl  The .node to update
  */
-Tree.prototype.makeTree = function(nodes, containerEl) {
-	// default to self, but also support subtrees
-	nodes = nodes || this.nodes;
-	containerEl = containerEl || this.containerEl;
+Tree.setNodeSize = function (nodeEl) {
+
+	// find .inner and .children
+	var innerEl = null;
+	var childrenEl = null;
+	Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
+		if (childEl.className.match(/inner/)) {
+			innerEl = childEl;
+		} else if (childEl.className.match(/children/)) {
+			childrenEl = childEl;
+		}
+	});
+
+	// something went wrong
+	if (!innerEl) return;
+
+	// find new dimensions
+	// width must be based on .inner
+	// but height may be .node (if it has many children)
+	var newWidth = innerEl.offsetWidth;
+	var newHeight = Math.max(
+		nodeEl.offsetHeight,
+		innerEl.offsetHeight
+	);
+
+	// adjust .node and .inner sizes
+	nodeEl.style.width = newWidth + 'px';
+	nodeEl.style.minHeight = newHeight + 'px';
+	innerEl.style.minHeight = newHeight + 'px';
+
+	// adjust .children shift
+	if (childrenEl) {
+		childrenEl.style.left = newWidth + 'px';
+	}
+
+};
+
+
+/**
+ * Create the html/css tree
+ */
+Tree.prototype.makeTree = function() {
 
 	/**
 	 * Tree (will get whole width)
@@ -39,7 +78,8 @@ Tree.prototype.makeTree = function(nodes, containerEl) {
 	var treeEl;
 	treeEl = document.createElement('div');
 	treeEl.className = 'tree';
-	containerEl.appendChild(treeEl);
+	this.containerEl.appendChild(treeEl);
+	this.treeEl = treeEl;
 
 
 	/**
@@ -63,21 +103,13 @@ Tree.prototype.makeTree = function(nodes, containerEl) {
 	 */
 
 	// add each node
-	nodes.forEach(function (node) {
+	this.nodes.forEach(function (node) {
 		this.addTreeNode(
 			node,
 			childrenEl,
 			treeEl
 		);
 	}, this);
-
-	/**
-	 * Okay, tree complete
-	 */
-
-	// set tree element width
-	var treeWidth = this.findTreeWidth(treeEl);
-	treeEl.style.minWidth = treeWidth + 'px';
 
 };
 
@@ -110,16 +142,19 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 	nodeEl.className = 'node';
 	containerEl.appendChild(nodeEl);
 
+	// save reference
+	this.nodeEls.push(nodeEl);
+
 	// content element
-	var contentEl;
-	contentEl = document.createElement('div');
-	contentEl.className = 'node-content';
-	nodeEl.appendChild(contentEl);
+	var innerEl;
+	innerEl = document.createElement('div');
+	innerEl.className = 'inner';
+	nodeEl.appendChild(innerEl);
 
 	// children element
 	var childrenEl;
 	childrenEl = document.createElement('div');
-	childrenEl.className = 'node-children vertically-center';
+	childrenEl.className = 'children vertically-center';
 	nodeEl.appendChild(childrenEl);
 
 	// subtree or tile?
@@ -133,10 +168,13 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		var subtreeEl;
 		subtreeEl = document.createElement('div');
 		subtreeEl.className = 'subtree';
-		contentEl.appendChild(subtreeEl);
+		innerEl.appendChild(subtreeEl);
 
-		// recursively build subtree
-		this.makeTree(node.subtree, subtreeEl);
+		// make new tree, save reference
+		this.subtrees.push(new Tree({
+			nodes: node.subtree,
+			containerEl: subtreeEl
+		}));
 
 		// make link?
 		if (linkSourceEl) {
@@ -169,20 +207,12 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 		var tileEl;
 		tileEl = document.createElement('div');
 		tileEl.className = 'tile vertically-center';
-		contentEl.appendChild(tileEl);
-
-		// ghost title element
-		// var ghostTitleEl;
-		// ghostTitleEl = document.createElement('div');
-		// ghostTitleEl.className = 'title';
-		// ghostTitleEl.textContent = node.title;
-		// ghostTitleEl.style.visibility = 'hidden';
-		// tileEl.appendChild(ghostTitleEl);
+		innerEl.appendChild(tileEl);
 
 		// shape element
 		var shapeEl;
 		shapeEl = document.createElement('div');
-		shapeEl.className = 'shape shape-square';
+		shapeEl.className = 'shape shape-square vertically-center';
 		tileEl.appendChild(shapeEl);
 
 		// level element
@@ -221,126 +251,7 @@ Tree.prototype.addTreeNode = function(node, containerEl, treeEl, linkSourceEl) {
 
 
 /**
- * Find this (or any) tree's width
- * based on its .node elements
- *
- * @param {HTMLElement} treeEl 	Tree's element, default to this.treeEl
- * @return {Number}	 			Width of tree, supposedly
- */
-Tree.prototype.findTreeWidth = function(treeEl) {
-
-	// default to this tree
-	treeEl = treeEl || this.treeEl;
-
-	// looking for min left and max right
-	var minLeft = Number.POSITIVE_INFINITY;
-	var maxRight = Number.NEGATIVE_INFINITY;
-
-	// check each .node element
-	var nodeElList = treeEl.querySelectorAll('.node');
-	Array.prototype.forEach.call(nodeElList, function (nodeEl) {
-
-		// measure client bounds
-		var bounds = nodeEl.getBoundingClientRect();
-		minLeft = Math.min(minLeft, bounds.left);
-		maxRight = Math.max(maxRight, bounds.right);
-
-	});
-
-	// width based on bounding rectangles
-	return maxRight - minLeft;
-};
-
-
-/**
- * Adjust width and height for .node elements
- * that contain nested subtrees
- *
- * @param {HTMLElement} containerEl 	Element to look within
- */
-Tree.prototype.adjustForSubtrees = function (containerEl) {
-
-	// find subtree elements
-	var treeElList = containerEl.querySelectorAll(
-		'.node > .node-content > .subtree > .tree');
-	Array.prototype.forEach.call(treeElList, function (treeEl) {
-
-		// find node containing this subtree
-		var nodeEl = treeEl.parentNode.parentNode.parentNode;
-
-		// adjust node size
-		nodeEl.style.minWidth = treeEl.offsetWidth + 'px';
-		nodeEl.style.minHeight = treeEl.offsetHeight + 'px';
-
-		// nudge over node children
-		Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
-			if (childEl.className.match(/node-children/)) {
-				childEl.style.left = treeEl.offsetWidth + 'px';
-			}
-		});
-
-	});
-
-};
-
-
-/**
- * Adjust width and height for .node elements
- * that contain tiles
- *
- * @param {HTMLElement} containerEl 	Element to look within
- */
-Tree.prototype.adjustForTiles = function (containerEl) {
-
-	// adjust any .subtree elements
-	var tileElList = containerEl.querySelectorAll(
-		'.node > .node-content > .tile');
-	Array.prototype.forEach.call(tileElList, function (tileEl) {
-
-		// find node containing this subtree
-		var nodeEl = tileEl.parentNode.parentNode;
-
-		// adjust node size
-		nodeEl.style.minWidth = tileEl.offsetWidth + 'px';
-		nodeEl.style.minHeight = tileEl.offsetHeight + 'px';
-
-		// nudge over node children
-		Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
-			if (childEl.className.match(/node-children/)) {
-				childEl.style.left = tileEl.offsetWidth + 'px';
-			}
-		});
-
-	});
-};
-
-
-/**
- * Verticall center any marked element in this (or any) tree
- * (any element with "vertically-center" class)
- *
- * @param {HTMLElement} containerEl 	Element to look within
- */
-Tree.prototype.verticallyCenterAll = function (containerEl) {
-
-	// adjust any .vertically-center elements
-	var elList = containerEl.querySelectorAll('.vertically-center');
-	Array.prototype.forEach.call(elList, function (el) {
-
-		// find parent and own height
-		var parentHeight = el.parentNode.offsetHeight;
-		var selfHeight = el.offsetHeight;
-
-		// center element
-		el.style.top = (parentHeight / 2) - (selfHeight / 2) + 'px';
-
-	});
-
-};
-
-
-/**
- * Update all link elements in this class
+ * Update this tree's links
  */
 Tree.prototype.updateLinks = function() {
 	this.links.forEach(function (link) {
@@ -350,11 +261,43 @@ Tree.prototype.updateLinks = function() {
 
 
 /**
- * Update all the things in this class
+ * Update this tree's width
+ */
+Tree.prototype.updateWidth = function() {
+	var nodeElsSize = util.findElementsSize(this.nodeEls);
+	this.treeEl.style.minWidth = nodeElsSize.width + 'px';
+};
+
+
+/**
+ * Update this tree's .node element sizes
+ */
+Tree.prototype.updateNodes = function() {
+	// order must be reversed!
+	// last (deepest) nodes sized first
+	this.nodeEls.reverse().forEach(function (nodeEl) {
+		Tree.setNodeSize(nodeEl);
+	});
+};
+
+
+/**
+ * Update this tree's subtrees
+ */
+Tree.prototype.updateSubtrees = function() {
+	this.subtrees.forEach(function (subtree) {
+		subtree.updateTree();
+	});
+};
+
+
+/**
+ * Update all the things in this tree
  */
 Tree.prototype.updateTree = function() {
-	this.adjustForSubtrees(this.containerEl);
-	//this.adjustForTiles(this.containerEl);
-	this.verticallyCenterAll(this.containerEl);
+	this.updateSubtrees();
+	this.updateNodes();
+	this.updateWidth();
+	util.verticallyCenterElements(this.containerEl);
 	this.updateLinks();
 };
