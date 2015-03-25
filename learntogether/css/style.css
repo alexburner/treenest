@@ -71,6 +71,19 @@ html, body {
 	background: #F7F7F7;
 }
 
+/**
+ * Fractal nesting testing
+ */
+/*.subtree > .tree {
+	background: #EEE;
+}
+.subtree > .tree .subtree > .tree {
+	background: #DDD;
+}
+.subtree > .tree .subtree > .tree .subtree > .tree {
+	background: #CCC;
+}*/
+
 
 
 /**
@@ -91,7 +104,7 @@ html, body {
 	margin: auto;
 	position: relative;
 	border-radius: 2px;
-	border: 1px solid #777;
+	border: 1px solid #417CA2;
 	background: #2A81B4;
 }
 
@@ -116,7 +129,7 @@ html, body {
 	line-height: 34px;
 	color: #8C8B86;
 	border-radius: 2px;
-	border: 1px solid #9CBAD9;
+	border: 1px solid #85B2D9;
 	background: #FFFFFF;
 	overflow: hidden;
 }

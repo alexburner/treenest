@@ -14,13 +14,21 @@ function createSkillNodeContent(node) {
 	// shape element
 	var shapeEl;
 	shapeEl = document.createElement('div');
-	shapeEl.className = 'shape shape-square vertically-center';
+	shapeEl.className = 'shape vertically-center';
+	switch (node.type) {
+		case "Soft Skill":
+			shapeEl.className += " shape-circle";
+			break;
+		case "Hard Skill":
+			shapeEl.className += " shape-square";
+			break;
+	}
 
 	// level element
 	var levelEl;
 	levelEl = document.createElement('div');
 	levelEl.className = 'level';
-	levelEl.textContent = Math.ceil(Math.random() * 5);
+	levelEl.textContent = node.level;
 
 	// title element
 	var titleEl;
