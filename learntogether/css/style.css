@@ -10,20 +10,23 @@ html, body {
 
 
 /**
+ *
  * Matryoshka
+ *
  */
 
 .tree {
-	/* min width set in JS */
-	/* height adjusts natively */
+	/* (min width set in JS) */
+	/* (height adjusts natively) */
 	margin: auto;
 	position: relative;
 }
 
 .node {
-	/* min size set in JS */
-	/* based on .inner's size */
+	/* (min size set in JS) */
+	/* (based on .inner's size) */
 	position: relative;
+	z-index: 20; /* above .link */
 }
 
 .node > .inner {
@@ -71,23 +74,50 @@ html, body {
 	background: #F7F7F7;
 }
 
-/**
- * Fractal nesting testing
- */
-/*.subtree > .tree {
-	background: #EEE;
-}
-.subtree > .tree .subtree > .tree {
-	background: #DDD;
-}
-.subtree > .tree .subtree > .tree .subtree > .tree {
-	background: #CCC;
-}*/
-
 
 
 /**
+ *
  * Learntogether
+ *
+ */
+
+/**
+ * Job canvas
+ */
+
+.job {
+	width: 290px;
+	height: 225px;
+	margin: 0 40px;
+	position: relative;
+	border: 1px solid #417CA2;
+	background: #2A81B4;
+}
+
+.job .title {
+	height: auto;
+	padding: 0 50px;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 20px;
+	line-height: 1.6em;
+	color: white;
+}
+
+.job .progress {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 15px;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+}
+
+/**
+ * Skill canvas
  */
 
 .skill {
@@ -95,7 +125,6 @@ html, body {
 	height: 124px;
 	margin: auto;
 	position: relative;
-	z-index: 100;
 }
 
 .skill .shape {

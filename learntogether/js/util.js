@@ -42,7 +42,7 @@ util.findElementsSize = function (elements) {
 /**
  * Vertically center any target elements in container
  * (elements marked with "vertically-center" class)
- * (assumes element is positioned absolutely or fixed)
+ * (assumes element is positioned absolutely, fixed, or relative)
  *
  * @param  {HTMLElement} containerEl  	(optional) Element to search within
  */

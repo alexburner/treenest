@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ex Fractal</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css">
+
+		#tree1 {
+			padding: 20px;
+		}
+
+		/**
+		 * Fractal nesting testing
+		 */
+		.subtree > .tree {
+			background: #EEE;
+		}
+		.subtree > .tree .subtree > .tree {
+			background: #DDD;
+		}
+		.subtree > .tree .subtree > .tree .subtree > .tree {
+			background: #CCC;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="tree1"></div>
+
+	<script type="text/javascript" src="js/exampleNodes-fractal.js"></script>
+	<script type="text/javascript" src="js/exampleCreates.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/Link.js"></script>
+	<script type="text/javascript" src="js/Tree.js"></script>
+	<script type="text/javascript">
+
+		var tree1 = new Tree({
+			nodes: exampleNodes,
+			containerEl: document.getElementById('tree1'),
+			createNodeContent: createSkillNodeContent
+		});
+
+	</script>
+</body>
+</html>

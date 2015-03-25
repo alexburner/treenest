@@ -6,7 +6,7 @@
  */
 function createSkillNodeContent(node) {
 
-	// tile element
+	// skill element
 	var skillEl;
 	skillEl = document.createElement('div');
 	skillEl.className = 'skill vertically-center';
@@ -54,5 +54,29 @@ function createSkillNodeContent(node) {
  * @return {HTMLElement}    	Created element
  */
 function createJobNodeContent(node) {
+
+	// job element
+	var jobEll;
+	jobEll = document.createElement('div');
+	jobEll.className = 'job vertically-center';
+
+	// title element
+	var titleEl;
+	titleEl = document.createElement('div');
+	titleEl.className = 'title vertically-center';
+	titleEl.textContent = node.title;
+
+	// progress element
+	var progressEl;
+	progressEl = document.createElement('div');
+	progressEl.className = 'progress';
+	progressEl.textContent = node.skillsComplete + ' / ' + node.skillsTotal;
+
+	// assembly
+	jobEll.appendChild(titleEl);
+	jobEll.appendChild(progressEl);
+
+	// return top level
+	return jobEll;
 
 }
