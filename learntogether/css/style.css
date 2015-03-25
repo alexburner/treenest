@@ -7,8 +7,14 @@ html, body {
 	color: #333;
 }
 
+
+
+/**
+ * Matryoshka
+ */
+
 .tree {
-	/* width set in JS */
+	/* min width set in JS */
 	/* height adjusts natively */
 	margin: auto;
 	position: relative;
@@ -31,57 +37,6 @@ html, body {
 .node > .children {
 	position: relative;
 	left: 100%;
-}
-
-.skill {
-	width: 124px;
-	height: 124px;
-	margin: auto;
-	position: relative;
-	z-index: 100;
-
-}
-.skill .shape {
-	width: 60px;
-	height: 60px;
-	margin: auto;
-	position: relative;
-	border-radius: 2px;
-	border: 1px solid #777;
-	background: #2A81B4;
-}
-.skill .shape-square {
-
-}
-.skill .shape-circle {
-	width: 60px;
-	height: 60px;
-	border-radius: 100px;
-}
-.skill .shape .level {
-	width: 30px;
-	height: 30px;
-	margin: auto;
-	position: relative;
-	top: 15px;
-	text-align: center;
-	font-size: 20px;
-	line-height: 34px;
-	color: #8C8B86;
-	border-radius: 2px;
-	border: 1px solid #9CBAD9;
-	background: #FFFFFF;
-	overflow: hidden;
-}
-.skill .shape .title {
-	position: absolute;
-	top: 100%;
-	left: -20px;
-	right: -20px;
-	padding: 6px;
-	text-align: center;
-	font-size: 15px;
-	line-height: 18px;
 }
 
 .link {
@@ -114,4 +69,65 @@ html, body {
 	border-left: 4px solid #929292;
 	border-right: 4px solid #929292;
 	background: #F7F7F7;
+}
+
+
+
+/**
+ * Learntogether
+ */
+
+.skill {
+	width: 124px;
+	height: 124px;
+	margin: auto;
+	position: relative;
+	z-index: 100;
+}
+
+.skill .shape {
+	width: 60px;
+	height: 60px;
+	margin: auto;
+	position: relative;
+	border-radius: 2px;
+	border: 1px solid #777;
+	background: #2A81B4;
+}
+
+.skill .shape-square {
+
+}
+
+.skill .shape-circle {
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+}
+
+.skill .shape .level {
+	width: 30px;
+	height: 30px;
+	margin: auto;
+	position: relative;
+	top: 15px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 34px;
+	color: #8C8B86;
+	border-radius: 2px;
+	border: 1px solid #9CBAD9;
+	background: #FFFFFF;
+	overflow: hidden;
+}
+
+.skill .shape .title {
+	position: absolute;
+	top: 100%;
+	left: -20px;
+	right: -20px;
+	padding: 6px;
+	text-align: center;
+	font-size: 15px;
+	line-height: 18px;
 }
