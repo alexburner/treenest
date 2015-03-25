@@ -21,10 +21,11 @@ function Tree(args) {
 
 
 /**
- * STATIC (not tied to class instance)
+ * STATIC
+ *
  * Set .node minimum size based on .inner
  *
- * @param  {HTMLElement} nodeEl  The .node to update
+ * @param {HTMLElement} nodeEl  The .node to update
  */
 Tree.setNodeSize = function (nodeEl) {
 
@@ -69,7 +70,7 @@ Tree.setNodeSize = function (nodeEl) {
 Tree.prototype.makeTree = function (nodes, containerEl) {
 
 	/**
-	 * Tree (will get whole width)
+	 * Tree
 	 */
 
 	// tree element
@@ -80,7 +81,6 @@ Tree.prototype.makeTree = function (nodes, containerEl) {
 
 	// save reference
 	this.treeEl = treeEl;
-
 
 	/**
 	 * Root node
@@ -106,6 +106,7 @@ Tree.prototype.makeTree = function (nodes, containerEl) {
 	nodes.forEach(function (node) {
 		this.addTreeNode(node, childrenEl);
 	}, this);
+
 
 };
 
@@ -152,9 +153,8 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 	// save reference
 	this.nodeEls.push(nodeEl);
 
-	// subtree or tile?
+	// subtree or content?
 	if (node.subtree) {
-
 
 		/**
 		 * Node subtree
@@ -176,18 +176,16 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 
 	} else {
 
-
 		/**
 		 * Node content
 		 */
 
-		// leave element creation to client
+		// delegate element creation to passed function
 		var contentEl = this.createNodeContent(node);
 		innerEl.appendChild(contentEl);
 
 
 	}
-
 
 	/**
 	 * Make link?
@@ -201,7 +199,6 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 		}));
 	}
 
-
 	/**
 	 * Make children?
 	 */
@@ -211,7 +208,6 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 			this.addTreeNode(child, childrenEl, nodeEl);
 		}, this);
 	}
-
 
 };
 
