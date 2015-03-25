@@ -28,14 +28,11 @@ function Tree(args) {
  */
 Tree.setNodeSize = function (nodeEl) {
 
-	// find .inner and .children
+	// find .inner
 	var innerEl = null;
-	var childrenEl = null;
 	Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
 		if (childEl.className.match(/inner/)) {
 			innerEl = childEl;
-		} else if (childEl.className.match(/children/)) {
-			childrenEl = childEl;
 		}
 	});
 
@@ -44,7 +41,8 @@ Tree.setNodeSize = function (nodeEl) {
 
 	// find new dimensions
 	// width must be based on .inner
-	// but height may be .node (if it has many children)
+	// but height may be set by .node
+	// (if it has many children)
 	var newWidth = innerEl.offsetWidth;
 	var newHeight = Math.max(
 		nodeEl.offsetHeight,
@@ -55,11 +53,6 @@ Tree.setNodeSize = function (nodeEl) {
 	nodeEl.style.width = newWidth + 'px';
 	nodeEl.style.minHeight = newHeight + 'px';
 	innerEl.style.minHeight = newHeight + 'px';
-
-	// adjust .children shift
-	if (childrenEl) {
-		childrenEl.style.left = newWidth + 'px';
-	}
 
 };
 

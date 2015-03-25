@@ -30,8 +30,7 @@ html, body {
 
 .node > .children {
 	position: relative;
-	/* left set in JS */
-	/* used to shift kids out of parent */
+	left: 100%;
 }
 
 .tile {
