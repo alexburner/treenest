@@ -11,11 +11,10 @@ function Tree(args) {
 	this.links = [];
 	this.subtrees = [];
 	// elements
-	this.containerEl = args.containerEl;
 	this.treeEl = null;
 	this.nodeEls = [];
 	// construction
-	this.makeTree(args.nodes);
+	this.makeTree(args.nodes, args.containerEl);
 	this.updateTree();
 }
 
@@ -30,11 +29,14 @@ Tree.setNodeSize = function (nodeEl) {
 
 	// find .inner
 	var innerEl = null;
-	Array.prototype.forEach.call(nodeEl.childNodes, function (childEl) {
-		if (childEl.className.match(/inner/)) {
-			innerEl = childEl;
+	Array.prototype.forEach.call(
+		nodeEl.childNodes,
+		function (childEl) {
+			if (childEl.className.match(/inner/)) {
+				innerEl = childEl;
+			}
 		}
-	});
+	);
 
 	// something went wrong
 	if (!innerEl) return;
@@ -60,9 +62,10 @@ Tree.setNodeSize = function (nodeEl) {
 /**
  * Create the html/css tree
  *
- * @param {Array} nodes 	Root node children
+ * @param {Array} nodes 				Root node children
+ * @param {HTMLElement} containerEl 	Element to append tree to
  */
-Tree.prototype.makeTree = function (nodes) {
+Tree.prototype.makeTree = function (nodes, containerEl) {
 
 	/**
 	 * Tree (will get whole width)
@@ -72,7 +75,9 @@ Tree.prototype.makeTree = function (nodes) {
 	var treeEl;
 	treeEl = document.createElement('div');
 	treeEl.className = 'tree';
-	this.containerEl.appendChild(treeEl);
+	containerEl.appendChild(treeEl);
+
+	// save reference
 	this.treeEl = treeEl;
 
 
@@ -271,6 +276,6 @@ Tree.prototype.updateTree = function() {
 	this.updateSubtrees();
 	this.updateNodes();
 	this.updateWidth();
-	util.verticallyCenterElements(this.containerEl);
+	util.verticallyCenterElements(this.treeEl);
 	this.updateLinks();
 };

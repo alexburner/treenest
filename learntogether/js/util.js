@@ -44,11 +44,14 @@ util.findElementsSize = function (elements) {
  * (elements marked with "vertically-center" class)
  * (assumes element is positioned absolutely or fixed)
  *
- * @param  {HTMLElement} containerEl  	Element to search within
+ * @param  {HTMLElement} containerEl  	(optional) Element to search within
  */
 util.verticallyCenterElements = function (containerEl) {
 
-	// for every matching element
+	// default to entire DOM
+	containerEl = containerEl || document;
+
+	// for every .vertically-center element
 	var elList = containerEl.querySelectorAll('.vertically-center');
 	Array.prototype.forEach.call(elList, function (el) {
 
