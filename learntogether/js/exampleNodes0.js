@@ -66,6 +66,16 @@ var exampleNodes = [
                                     {
                                         "title": "Hydrosphere"
                                     }
+                                ],
+                                "children": [
+                                    {
+                                        "title": "Troposphere",
+                                        "children": [
+                                            {
+                                                "title": "Troposphere"
+                                            }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
@@ -77,7 +87,20 @@ var exampleNodes = [
                                 "title": "Space Shuttle Endeavour",
                                 "subtree": [
                                     {
-                                        "title": "Planetary boundary layer"
+                                        "title": "Planetary boundary layer",
+                                        "children": [
+                                            {
+                                                "title": "Troposphere",
+                                                "children": [
+                                                    {
+                                                        "title": "Troposphere"
+                                                    },
+                                                    {
+                                                        "title": "Troposphere"
+                                                    }
+                                                ]
+                                            }
+                                        ]
                                     },
                                     {
                                         "title": "Troposphere",
@@ -167,7 +190,22 @@ var exampleNodes = [
                                         ]
                                     },
                                     {
-                                        "title": "Hydrosphere"
+                                        "title": "Hydrosphere",
+                                        "children": [
+                                            {
+                                                "title": "Hydrosphere",
+                                                "children": [
+                                                    {
+                                                        "title": "Troposphere",
+                                                        "children": [
+                                                            {
+                                                                "title": "Troposphere"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
                                     }
                                 ],
                                 "children": [
