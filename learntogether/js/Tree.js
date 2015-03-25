@@ -14,6 +14,7 @@ function Tree(args) {
 	this.treeEl = null;
 	this.nodeEls = [];
 	// construction
+	this.createNodeContent = args.createNodeContent;
 	this.makeTree(args.nodes, args.containerEl);
 	this.updateTree();
 }
@@ -136,7 +137,7 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 	nodeEl.className = 'node';
 	containerEl.appendChild(nodeEl);
 
-	// content element
+	// inner element
 	var innerEl;
 	innerEl = document.createElement('div');
 	innerEl.className = 'inner';
@@ -154,6 +155,7 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 	// subtree or tile?
 	if (node.subtree) {
 
+
 		/**
 		 * Node subtree
 		 */
@@ -167,46 +169,30 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 		// make new tree, save reference
 		this.subtrees.push(new Tree({
 			nodes: node.subtree,
-			containerEl: subtreeEl
+			containerEl: subtreeEl,
+			createNodeContent: this.createNodeContent
 		}));
 
+
 	} else {
+
 
 		/**
 		 * Node content
 		 */
 
-		// tile element
-		var tileEl;
-		tileEl = document.createElement('div');
-		tileEl.className = 'tile vertically-center';
-		innerEl.appendChild(tileEl);
+		// leave element creation to client
+		var contentEl = this.createNodeContent(node);
+		innerEl.appendChild(contentEl);
 
-		// shape element
-		var shapeEl;
-		shapeEl = document.createElement('div');
-		shapeEl.className = 'shape shape-square vertically-center';
-		tileEl.appendChild(shapeEl);
-
-		// level element
-		var levelEl;
-		levelEl = document.createElement('div');
-		levelEl.className = 'level';
-		levelEl.textContent = Math.ceil(Math.random() * 5);
-		shapeEl.appendChild(levelEl);
-
-		// title element
-		var titleEl;
-		titleEl = document.createElement('div');
-		titleEl.className = 'title';
-		titleEl.textContent = node.title;
-		shapeEl.appendChild(titleEl);
 
 	}
+
 
 	/**
 	 * Make link?
 	 */
+
 	if (linkSourceEl) {
 		this.links.push(new Link({
 			containerEl: this.treeEl,
@@ -219,11 +205,13 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 	/**
 	 * Make children?
 	 */
+
 	if (node.children) {
 		node.children.forEach(function (child) {
 			this.addTreeNode(child, childrenEl, nodeEl);
 		}, this);
 	}
+
 
 };
 

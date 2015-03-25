@@ -17,6 +17,7 @@
 	<div id="tree1"></div>
 
 	<script type="text/javascript" src="js/exampleNodes4.js"></script>
+	<script type="text/javascript" src="js/exampleCreates.js"></script>
 	<script type="text/javascript" src="js/util.js"></script>
 	<script type="text/javascript" src="js/Link.js"></script>
 	<script type="text/javascript" src="js/Tree.js"></script>
@@ -24,7 +25,8 @@
 
 		var tree1 = new Tree({
 			nodes: exampleNodes,
-			containerEl: document.getElementById('tree1')
+			containerEl: document.getElementById('tree1'),
+			createNodeContent: createSkillNodeContent
 		});
 
 	</script>

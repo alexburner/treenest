@@ -33,7 +33,7 @@ html, body {
 	left: 100%;
 }
 
-.tile {
+.skill {
 	width: 124px;
 	height: 124px;
 	margin: auto;
@@ -41,7 +41,7 @@ html, body {
 	z-index: 100;
 
 }
-.tile .shape {
+.skill .shape {
 	width: 60px;
 	height: 60px;
 	margin: auto;
@@ -50,15 +50,15 @@ html, body {
 	border: 1px solid #777;
 	background: #2A81B4;
 }
-.tile .shape-square {
+.skill .shape-square {
 
 }
-.tile .shape-circle {
+.skill .shape-circle {
 	width: 60px;
 	height: 60px;
 	border-radius: 100px;
 }
-.tile .shape .level {
+.skill .shape .level {
 	width: 30px;
 	height: 30px;
 	margin: auto;
@@ -73,7 +73,7 @@ html, body {
 	background: #FFFFFF;
 	overflow: hidden;
 }
-.tile .title {
+.skill .shape .title {
 	position: absolute;
 	top: 100%;
 	left: -20px;
