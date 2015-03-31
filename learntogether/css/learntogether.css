@@ -11,6 +11,13 @@ html, body {
 	color: #333;
 }
 
+/* allow <a> shapes */
+a.shape {
+	display: block;
+	cursor: pointer;
+	color: #333;
+}
+
 /**
  * Job canvas
  */
@@ -18,11 +25,6 @@ html, body {
 .job {
 	padding: 40px;
 	position: relative;
-}
-
-.job a.shape {
-	display: block;
-	cursor: pointer;
 }
 
 .job .shape {
@@ -61,11 +63,6 @@ html, body {
 .skill {
 	padding: 35px;
 	position: relative;
-}
-
-.skill a.shape {
-	display: block;
-	cursor: pointer;
 }
 
 .skill .shape {

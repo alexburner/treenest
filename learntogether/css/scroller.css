@@ -1,4 +1,5 @@
 .scroller {
+	position: relative;
 	overflow: auto;
 }
 
