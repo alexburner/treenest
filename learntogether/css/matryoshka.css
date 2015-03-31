@@ -20,6 +20,7 @@
 }
 
 .node > .children {
+	width: 1px; /* only needs height */
 	position: relative;
 	left: 100%;
 }
