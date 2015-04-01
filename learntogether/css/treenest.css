@@ -1,0 +1,55 @@
+.tree {
+	/* (min width set in JS) */
+	/* (height adjusts natively) */
+	position: relative;
+	background: #F7F7F7;
+}
+
+.node {
+	/* (min size set in JS) */
+	/* (based on .inner's size) */
+	position: relative;
+	z-index: 20; /* above .link */
+}
+
+.node > .inner {
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.node > .children {
+	width: 1px; /* only needs height */
+	position: relative;
+	left: 100%;
+}
+
+.link {
+	width: 4px;
+	/* (height set in js) */
+	position: absolute;
+	/* (top & left set in js) */
+	z-index: 10;
+	border-radius: 4px;
+	background: #929292;
+	/* hacks to make line smoother */
+	outline: 1px solid transparent;
+	-webkit-backface-visibility: hidden;
+	/* rotation anchor position */
+	-webkit-transform-origin: top center;
+	-moz-transform-origin: top center;
+	-ms-transform-origin: top center;
+	-o-transform-origin: top center;
+	transform-origin: top center;
+	/* (rotation set in js) */
+}
+
+.subtree {
+	margin: 10px 20px;
+	position: relative;
+	z-index: 100;
+	border-left: 4px solid #929292;
+	border-right: 4px solid #929292;
+}
