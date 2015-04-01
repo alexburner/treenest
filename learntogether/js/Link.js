@@ -1,6 +1,6 @@
 /**
  * Link class
- * Keeps track of link and related elements
+ * Draws a link between center of two elements, update when requested
  *
  * @param {Object} args 					Initial arguments
  * @param {HTMLElement} args.containerEl	Containing element

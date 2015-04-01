@@ -15,6 +15,7 @@ html, body {
 a.shape {
 	display: block;
 	cursor: pointer;
+	text-decoration: none;
 	color: #333;
 }
 

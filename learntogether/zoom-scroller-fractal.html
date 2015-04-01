@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="css/scroller.css">
-	<link rel="stylesheet" type="text/css" href="css/matryoshka.css">
+	<link rel="stylesheet" type="text/css" href="css/treenest.css">
 	<link rel="stylesheet" type="text/css" href="css/learntogether.css">
 	<style type="text/css">
 
@@ -30,6 +30,20 @@
 			margin: auto;
 		}
 
+
+		/**
+		 * Zoom
+		 */
+		.learning-canvas {
+			position: relative;
+		}
+		.learning-canvas .zoom-controls {
+			position: absolute;
+			right: 15px;
+			bottom: 15px;
+			z-index: 9000;
+		}
+
 		/**
 		 * Fractal nesting testing
 		 */
@@ -44,20 +58,6 @@
 		}
 		.subtree > .tree .subtree > .tree .subtree > .tree {
 			background: #BBB;
-		}
-
-
-		/**
-		 * Zoom
-		 */
-		.learning-canvas {
-			position: relative;
-		}
-		.learning-canvas .zoom-controls {
-			position: absolute;
-			right: 15px;
-			bottom: 15px;
-			z-index: 9000;
 		}
 
 	</style>

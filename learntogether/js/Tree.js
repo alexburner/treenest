@@ -278,6 +278,7 @@ Tree.prototype.updateSubtrees = function() {
 Tree.prototype.updateTree = function() {
 	this.updateSubtrees();
 	this.updateNodes();
+	this.updateNodes();
 	this.updateWidth();
 	util.verticallyCenterElements(this.treeEl);
 	this.updateLinks();
