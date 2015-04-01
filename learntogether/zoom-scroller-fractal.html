@@ -48,12 +48,12 @@
 
 
 		/**
-		 * Scrollable's Zoom
+		 * Zoom
 		 */
-		.scrollable {
+		.learning-canvas {
 			position: relative;
 		}
-		.scrollable .zoom-controls {
+		.learning-canvas .zoom-controls {
 			position: absolute;
 			right: 15px;
 			bottom: 15px;
@@ -64,7 +64,7 @@
 </head>
 <body>
 
-	<div class="scrollable">
+	<div class="learning-canvas">
 
 		<div class="zoom-controls btn-group-vertical" data-zoom-target="#tree1">
 			<button type="button" class="zoom-in btn btn-default">
@@ -95,7 +95,7 @@
 	<script type="text/javascript">
 
 		var tree1 = new Tree({
-			nodes: exampleNodes,
+			rootNode: exampleRootNode,
 			containerEl: document.getElementById('tree1'),
 			createNodeContent: createSkillNodeContent
 		});

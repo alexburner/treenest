@@ -15,7 +15,7 @@ function Tree(args) {
 	this.nodeEls = [];
 	// construction
 	this.createNodeContent = args.createNodeContent;
-	this.makeTree(args.nodes, args.containerEl);
+	this.makeTree(args.rootNode, args.containerEl);
 	this.updateTree();
 }
 
@@ -67,7 +67,7 @@ Tree.setNodeSize = function (nodeEl) {
  * @param {Array} nodes 				Root node children
  * @param {HTMLElement} containerEl 	Element to append tree to
  */
-Tree.prototype.makeTree = function (nodes, containerEl) {
+Tree.prototype.makeTree = function (rootNode, containerEl) {
 
 	/**
 	 * Tree
@@ -103,7 +103,7 @@ Tree.prototype.makeTree = function (nodes, containerEl) {
 	 */
 
 	// add each node
-	nodes.forEach(function (node) {
+	rootNode.children.forEach(function (node) {
 		this.addTreeNode(node, childrenEl);
 	}, this);
 
@@ -166,11 +166,21 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 		subtreeEl.className = 'subtree';
 		innerEl.appendChild(subtreeEl);
 
-		// make new tree, save reference
+		// node constructor
+		var createNodeContent;
+		if (node.subtree.createNodeContent) {
+			// this subtree has its own node constructor
+			createNodeContent = node.subtree.createNodeContent;
+		} else {
+			// default to current tree's node constructor
+			createNodeContent = this.createNodeContent;
+		}
+
+		// make new tree & save reference
 		this.subtrees.push(new Tree({
-			nodes: node.subtree,
+			rootNode: node.subtree,
 			containerEl: subtreeEl,
-			createNodeContent: this.createNodeContent
+			createNodeContent: createNodeContent
 		}));
 
 
@@ -180,8 +190,17 @@ Tree.prototype.addTreeNode = function(node, containerEl, linkSourceEl) {
 		 * Node content
 		 */
 
-		// delegate element creation to passed function
-		var contentEl = this.createNodeContent(node);
+		// delegate content element creation
+		var contentEl;
+		if (node.createNodeContent) {
+			// this node has its own constructor
+			contentEl = node.createNodeContent(node);
+		} else {
+			// default to this tree's node constructor
+			contentEl = this.createNodeContent(node);
+		}
+
+		// add content to node
 		innerEl.appendChild(contentEl);
 
 
