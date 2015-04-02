@@ -24,6 +24,14 @@ function createSkillNodeContent(node) {
 			break;
 	}
 
+
+	// testing click events
+	shapeEl.addEventListener('click', function (e) {
+		e.preventDefault();
+		alert(node.title + ': Level ' +node.level);
+	});
+
+
 	// level element
 	var levelEl;
 	levelEl = document.createElement('div');

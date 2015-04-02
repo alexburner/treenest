@@ -157,7 +157,32 @@ var exampleRootNode = {
                                                                                                                 "title": "Space Shuttle Endeavour",
                                                                                                                 "children": [
                                                                                                                     {
-                                                                                                                        "title": "Planetary boundary layer"
+                                                                                                                        "title": "Planetary boundary layer",
+                                                                                                                        "subtree": {
+                                                                                                                            "children": [
+                                                                                                                                {
+                                                                                                                                    "title": "ocean",
+                                                                                                                                    "children": [
+                                                                                                                                        {
+                                                                                                                                            "title": "Troposphere",
+                                                                                                                                            "children": [
+                                                                                                                                                {
+                                                                                                                                                    "title": "Space Shuttle Endeavour",
+                                                                                                                                                    "children": [
+                                                                                                                                                        {
+                                                                                                                                                            "title": "Planetary boundary layer"
+                                                                                                                                                        }
+                                                                                                                                                    ]
+                                                                                                                                                },
+                                                                                                                                                {
+                                                                                                                                                    "title": "Friction"
+                                                                                                                                                }
+                                                                                                                                            ]
+                                                                                                                                        }
+                                                                                                                                    ]
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        },
                                                                                                                     }
                                                                                                                 ]
                                                                                                             },
@@ -213,6 +238,28 @@ var exampleRootNode = {
                                                                     }
                                                                 ]
                                                             }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Hydrosphere",
+                                                "children": [
+                                                    {
+                                                        "title": "Hydrosphere",
+                                                        "children": [
+                                                            {
+                                                                "title": "Hydrosphere",
+                                                                "children": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Hydrosphere",
+                                                        "children": [
+
                                                         ]
                                                     }
                                                 ]

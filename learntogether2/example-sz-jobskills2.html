@@ -38,6 +38,7 @@
 		 */
 		.learning-canvas {
 			position: relative;
+			overflow: hidden;
 		}
 		.learning-canvas .zoom-controls {
 			position: absolute;
@@ -86,11 +87,62 @@
 		}
 
 
+
+
+		.shadow-in {
+			position: absolute;
+			z-index: 10000;
+		}
+		.shadow-in.top {
+			height: 10px;
+			top: -10px;
+			left: 0;
+			right: 0;
+			-webkit-box-shadow: 0 0 8px 0 black;
+			   -moz-box-shadow: 0 0 8px 0 black;
+			        box-shadow: 0 0 8px 0 black;
+		}
+		.shadow-in.left {
+			width: 10px;
+			top: 0;
+			left: -10px;
+			bottom: 0;
+			-webkit-box-shadow: 0 0 6px 0 black;
+			   -moz-box-shadow: 0 0 6px 0 black;
+			        box-shadow: 0 0 6px 0 black;
+		}
+		.shadow-in.right {
+			width: 10px;
+			top: 0;
+			right: -10px;
+			bottom: 0;
+			-webkit-box-shadow: 0 0 6px 0 black;
+			   -moz-box-shadow: 0 0 6px 0 black;
+			        box-shadow: 0 0 6px 0 black;
+		}
+		.shadow-in.bottom {
+			height: 10px;
+			left: 0;
+			right: 0;
+			bottom: -10px;
+			-webkit-box-shadow: 0 0 8px 0 black;
+			   -moz-box-shadow: 0 0 8px 0 black;
+			        box-shadow: 0 0 8px 0 black;
+		}
+
+
+
+
 	</style>
 </head>
 <body>
 
 	<div class="learning-canvas">
+
+		<div class="shadow-in top"></div>
+		<div class="shadow-in left"></div>
+		<div class="shadow-in right"></div>
+		<div class="shadow-in bottom"></div>
 
 		<div class="zoom-controls btn-group-vertical">
 			<button type="button" class="zoom-in btn btn-default">
