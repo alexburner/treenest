@@ -1,4 +1,48 @@
 /**
+ * Create node content for job/skill canvas
+ *
+ * @param  {Object} node  		Node data for content
+ * @return {HTMLElement}    	Created element
+ */
+function createSkillsetNodeContent(node) {
+
+	// skillset element
+    var skillsetEl;
+    skillsetEl = document.createElement('div');
+    skillsetEl.className = 'skillset vertically-center';
+
+    // inner element
+    var innerEl;
+    innerEl = document.createElement('div');
+    innerEl.className = 'inner';
+    skillsetEl.appendChild(innerEl);
+
+    // title element
+    var titleEl;
+    titleEl = document.createElement('h2');
+    titleEl.className = 'skillset-title';
+    titleEl.textContent = node.title;
+    innerEl.appendChild(titleEl);
+
+    // make skill tree
+    // but wait a tick
+    // allows container el to be appended to parent tree
+    // before constructing & measuring child tree
+    setTimeout(function () {
+        var tree = new Tree({
+            rootNode: node.skillset,
+            containerEl: innerEl,
+            createNodeContent: createSkillNodeContent
+        });
+    }, 0);
+
+    // return top level
+    return skillsetEl;
+
+}
+
+
+/**
  * Create node content for skill canvas
  *
  * @param  {Object} node  		Node data for content

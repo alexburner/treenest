@@ -235,163 +235,27 @@ var exampleRootNode = {
             "title": "Project Coordinator",
             "skillsComplete": 8,
             "skillsTotal": 8,
-            "createNodeContent": function (node) {
-
-                var containerEl;
-                containerEl = document.createElement('div');
-                containerEl.className = 'skillset vertically-center';
-
-                var innerEl;
-                innerEl = document.createElement('div');
-                innerEl.className = 'inner';
-                containerEl.appendChild(innerEl);
-
-                // wait a tick
-                // allows container el to be appended to parent tree
-                // before constructing & measuring child tree
-                setTimeout(function () {
-
-                    // make tree
-                    var tree = new Tree({
-                        rootNode: exampleSkillNode1,
-                        containerEl: innerEl,
-                        createNodeContent: createSkillNodeContent
-                    });
-
-                    // sneaky title append
-                    var titleEl;
-                    titleEl = document.createElement('h2');
-                    titleEl.className = 'skillset-title';
-                    titleEl.textContent = node.title;
-                    innerEl.appendChild(titleEl);
-
-                }, 0);
-
-                return containerEl;
-
-            },
+            "skillset": exampleSkillNode1,
             "children": [
                 {
                     "title": "Project Manager I",
                     "skillsComplete": 3,
                     "skillsTotal": 9,
-                    "createNodeContent": function (node) {
-
-                        var containerEl;
-                        containerEl = document.createElement('div');
-                        containerEl.className = 'skillset vertically-center';
-
-                        var innerEl;
-                        innerEl = document.createElement('div');
-                        innerEl.className = 'inner';
-                        containerEl.appendChild(innerEl);
-
-                        // wait a tick
-                        // allows container el to be appended to parent tree
-                        // before constructing & measuring child tree
-                        setTimeout(function () {
-
-                            // make tree
-                            var tree = new Tree({
-                                rootNode: exampleSkillNode2,
-                                containerEl: innerEl,
-                                createNodeContent: createSkillNodeContent
-                            });
-
-                            // sneaky title append
-                            var titleEl;
-                            titleEl = document.createElement('h2');
-                            titleEl.className = 'skillset-title';
-                            titleEl.textContent = node.title;
-                            innerEl.appendChild(titleEl);
-
-                        }, 0);
-
-                        return containerEl;
-
-                    },
+                    "skillset": exampleSkillNode2,
                     "children": [
                         {
                             "title": "Project Manager II",
                             "type": "Hard Skill",
                             "skillsComplete": 0,
                             "skillsTotal": 7,
-                            "createNodeContent": function (node) {
-
-                                var containerEl;
-                                containerEl = document.createElement('div');
-                                containerEl.className = 'skillset vertically-center';
-
-                                var innerEl;
-                                innerEl = document.createElement('div');
-                                innerEl.className = 'inner';
-                                containerEl.appendChild(innerEl);
-
-                                // wait a tick
-                                // allows container el to be appended to parent tree
-                                // before constructing & measuring child tree
-                                setTimeout(function () {
-
-                                    // make tree
-                                    var tree = new Tree({
-                                        rootNode: exampleSkillNode3,
-                                        containerEl: innerEl,
-                                        createNodeContent: createSkillNodeContent
-                                    });
-
-                                    // sneaky title append
-                                    var titleEl;
-                                    titleEl = document.createElement('h2');
-                                    titleEl.className = 'skillset-title';
-                                    titleEl.textContent = node.title;
-                                    innerEl.appendChild(titleEl);
-
-                                }, 0);
-
-                                return containerEl;
-
-                            },
+                            "skillset": exampleSkillNode3,
                             "children": [
                                 {
                                     "title": "Project Manager III",
                                     "type": "Hard Skill",
                                     "skillsComplete": 0,
                                     "skillsTotal": 6,
-                                    "createNodeContent": function (node) {
-
-                                        var containerEl;
-                                        containerEl = document.createElement('div');
-                                        containerEl.className = 'skillset vertically-center';
-
-                                        var innerEl;
-                                        innerEl = document.createElement('div');
-                                        innerEl.className = 'inner';
-                                        containerEl.appendChild(innerEl);
-
-                                        // wait a tick
-                                        // allows container el to be appended to parent tree
-                                        // before constructing & measuring child tree
-                                        setTimeout(function () {
-
-                                            // make tree
-                                            var tree = new Tree({
-                                                rootNode: exampleSkillNode4,
-                                                containerEl: innerEl,
-                                                createNodeContent: createSkillNodeContent
-                                            });
-
-                                            // sneaky title append
-                                            var titleEl;
-                                            titleEl = document.createElement('h2');
-                                            titleEl.className = 'skillset-title';
-                                            titleEl.textContent = node.title;
-                                            innerEl.appendChild(titleEl);
-
-                                        }, 0);
-
-                                        return containerEl;
-
-                                    },
+                                    "skillset": exampleSkillNode4,
                                     "children": [
 
                                     ]
