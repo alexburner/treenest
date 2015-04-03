@@ -12,7 +12,7 @@ var util = {};
  */
 util.findElementsSize = function (elements) {
 
-	// prepare to find bounds
+	// prepare to find bound extremes
 	var minTop = Number.POSITIVE_INFINITY;
 	var minLeft = Number.POSITIVE_INFINITY;
 	var maxRight = Number.NEGATIVE_INFINITY;
@@ -21,7 +21,7 @@ util.findElementsSize = function (elements) {
 	// for each element
 	Array.prototype.forEach.call(elements, function (element) {
 
-		// check element bounds
+		// check element bounds against extremes
 		var bounds = element.getBoundingClientRect();
 		minTop = Math.min(minTop, bounds.top);
 		minLeft = Math.min(minLeft, bounds.left);
@@ -95,15 +95,14 @@ util.verticallyCenterRelativeElement = function (el) {
 	var parentHeight = el.offsetParent.clientHeight;
 	var selfHeight = el.clientHeight;
 
-	// find any parent top padding
+	// find parent's top padding
 	var parentStyle = window.getComputedStyle(el.offsetParent);
 	var parentTopPad = parentStyle
 		.getPropertyValue('padding-top')
-		.replace(/px/, '');
+			.replace(/px$/, '');
 
 	// center element
 	var newTop = (parentHeight / 2) - (selfHeight / 2) - parentTopPad;
 	el.style.top = newTop + 'px';
 
 };
-
