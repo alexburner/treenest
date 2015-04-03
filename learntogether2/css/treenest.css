@@ -1,6 +1,61 @@
+/**
+ * Utility
+ */
+
+.vertically-center-relative {
+	position: relative;
+}
+
+.shadow-in {
+	position: absolute;
+	z-index: 10000;
+}
+.shadow-in.top {
+	height: 10px;
+	top: -10px;
+	left: 0;
+	right: 0;
+	-webkit-box-shadow: 0 0 10px 0 black;
+	   -moz-box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;
+}
+.shadow-in.left {
+	width: 10px;
+	top: 0;
+	left: -10px;
+	bottom: 0;
+	-webkit-box-shadow: 0 0 10px 0 black;
+	   -moz-box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;
+}
+.shadow-in.right {
+	width: 10px;
+	top: 0;
+	right: -10px;
+	bottom: 0;
+	-webkit-box-shadow: 0 0 10px 0 black;
+	   -moz-box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;
+}
+.shadow-in.bottom {
+	height: 10px;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+	-webkit-box-shadow: 0 0 10px 0 black;
+	   -moz-box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;
+}
+
+
+/**
+ * Tree, nodes, links
+ */
+
 .tree {
 	/* (min width set in JS) */
 	/* (height adjusts natively) */
+	margin: auto;
 	position: relative;
 	background: #F7F7F7;
 }
@@ -53,3 +108,32 @@
 	border-left: 4px solid #929292;
 	border-right: 4px solid #929292;
 }
+
+
+/**
+ * Scroller
+ */
+
+.scroll-container {
+	position: relative;
+	overflow: hidden;
+}
+.scroll-container .zoom-controls {
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	z-index: 9000;
+}
+
+.scroller {
+	position: relative;
+	overflow: auto;
+}
+
+.scrolled {
+	min-width: 100%;
+	min-height: 100%;
+	position: relative;
+	cursor: move;
+}
+

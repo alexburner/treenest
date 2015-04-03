@@ -28,115 +28,11 @@
 			position: relative;
 		}
 
-		.tree {
-			margin: auto;
-		}
-
-
-		/**
-		 * Zoom
-		 */
-		.learning-canvas {
-			position: relative;
-			overflow: hidden;
-		}
-		.learning-canvas .zoom-controls {
-			position: absolute;
-			right: 15px;
-			bottom: 15px;
-			z-index: 9000;
-		}
-
-		/* hack, only display skillset links */
-		/*.link {
-			display: none;
-		}
-		.skillset .link {
-			display: block;
-		}*/
-
-		.skillset .tree {
-			background: #EEE;
-		}
-
-		.skillset {
-			padding-top: 15px;
-			padding-right: 30px;
-			padding-bottom: 15px;
-			position: relative;
-		}
-
-		.skillset > .inner {
-			padding: 75px 0;
-			position: relative;
-			border-radius: 4px;
-			background: #EEE;
-		}
-
-		.skillset-title {
-			margin: 0;
-			padding: 16px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			text-align: center;
-			border-top-right-radius: 4px;
-			border-top-left-radius: 4px;
-			background: #DDD;
-		}
-
-
-
-
-
-		.shadow-in {
-			position: absolute;
-			z-index: 10000;
-		}
-		.shadow-in.top {
-			height: 10px;
-			top: -10px;
-			left: 0;
-			right: 0;
-			-webkit-box-shadow: 0 0 10px 0 black;
-			   -moz-box-shadow: 0 0 10px 0 black;
-			        box-shadow: 0 0 10px 0 black;
-		}
-		.shadow-in.left {
-			width: 10px;
-			top: 0;
-			left: -10px;
-			bottom: 0;
-			-webkit-box-shadow: 0 0 10px 0 black;
-			   -moz-box-shadow: 0 0 10px 0 black;
-			        box-shadow: 0 0 10px 0 black;
-		}
-		.shadow-in.right {
-			width: 10px;
-			top: 0;
-			right: -10px;
-			bottom: 0;
-			-webkit-box-shadow: 0 0 10px 0 black;
-			   -moz-box-shadow: 0 0 10px 0 black;
-			        box-shadow: 0 0 10px 0 black;
-		}
-		.shadow-in.bottom {
-			height: 10px;
-			left: 0;
-			right: 0;
-			bottom: -10px;
-			-webkit-box-shadow: 0 0 10px 0 black;
-			   -moz-box-shadow: 0 0 10px 0 black;
-			        box-shadow: 0 0 10px 0 black;
-		}
-
-
 	</style>
 </head>
 <body>
 
-	<div class="learning-canvas">
+	<div class="scroll-container">
 
 		<div class="shadow-in top"></div>
 		<div class="shadow-in left"></div>
@@ -193,10 +89,10 @@
 			dragToScroll(document);
 
 			clickToZoom({
-				$controls: $('.learning-canvas').find('.zoom-controls'),
+				$controls: $('.scroll-container').find('.zoom-controls'),
 				$target: $('#tree1').children('.tree'),
 				$parent: $('#tree1'),
-				$frame: $('.learning-canvas').find('.scroller')
+				$frame: $('.scroll-container').find('.scroller')
 			});
 
 

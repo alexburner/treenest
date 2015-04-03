@@ -24,6 +24,12 @@ function createSkillsetNodeContent(node) {
     titleEl.textContent = node.title;
     innerEl.appendChild(titleEl);
 
+    // container element for skillset tree
+    var containerEl;
+    containerEl = document.createElement('div');
+    containerEl.className = 'vertically-center-relative';
+    innerEl.appendChild(containerEl);
+
     // make skill tree
     // but wait a tick
     // allows container el to be appended to parent tree
@@ -31,7 +37,7 @@ function createSkillsetNodeContent(node) {
     setTimeout(function () {
         var tree = new Tree({
             rootNode: node.skillset,
-            containerEl: innerEl,
+            containerEl: containerEl,
             createNodeContent: createSkillNodeContent
         });
     }, 0);

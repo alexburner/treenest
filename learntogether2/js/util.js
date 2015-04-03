@@ -57,23 +57,53 @@ util.verticallyCenterElements = function (containerEl) {
 		util.verticallyCenterElement(el);
 	});
 
+	// for every .vertically-center-relative element
+	var elRelativeList = containerEl.querySelectorAll('.vertically-center-relative');
+	Array.prototype.forEach.call(elRelativeList, function (el) {
+		util.verticallyCenterRelativeElement(el);
+	});
+
 };
 
 
 /**
  * Vertically center a specific element
- * (assumes element is positioned absolutely, fixed, or relative)
+ * (assumes element is positioned absolutely or fixed)
  *
  * @param  {HTMLElement} el  	Element to vertically center
  */
 util.verticallyCenterElement = function (el) {
 
 	// find height of self and positioning parent
-	var parentHeight = el.offsetParent.offsetHeight;
-	var selfHeight = el.offsetHeight;
+	var parentHeight = el.offsetParent.clientHeight;
+	var selfHeight = el.clientHeight;
 
 	// center element
 	el.style.top = (parentHeight / 2) - (selfHeight / 2) + 'px';
+
+};
+
+/**
+ * Vertically center a specific element
+ * (assumes element is relative and checks for parent padding)
+ *
+ * @param  {HTMLElement} el  	Element to vertically center
+ */
+util.verticallyCenterRelativeElement = function (el) {
+
+	// find height of self and positioning parent
+	var parentHeight = el.offsetParent.clientHeight;
+	var selfHeight = el.clientHeight;
+
+	// find any parent top padding
+	var parentStyle = window.getComputedStyle(el.offsetParent);
+	var parentTopPad = parentStyle
+		.getPropertyValue('padding-top')
+		.replace(/px/, '');
+
+	// center element
+	var newTop = (parentHeight / 2) - (selfHeight / 2) - parentTopPad;
+	el.style.top = newTop + 'px';
 
 };
 
