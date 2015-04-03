@@ -84,12 +84,6 @@ function clickToZoom(args) {
 		var frameY = Number(frameOffset.top.toFixed(0));
 		var frameWidth = $frame.width();
 		var frameHeight = $frame.height();
-
-		console.log('tx,ty', targetX, targetY);
-		console.log('fx,fy', frameX, frameY);
-		console.log('fw,fh', frameWidth, frameHeight);
-		console.log('fw/2,fh/2', frameWidth / 2, frameHeight / 2);
-
 		// calculate origin x
 		var x = frameX;
 		x -= targetX;
@@ -98,9 +92,6 @@ function clickToZoom(args) {
 		var y = frameY;
 		y -= targetY;
 		y += (frameHeight / 2);
-
-		console.log('x,y', x, y);
-
 		// set css values
 		$target.css({
 			'transform-origin': x + 'px ' + y + 'px'
