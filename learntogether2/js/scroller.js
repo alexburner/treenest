@@ -20,7 +20,6 @@ function dragToScroll(containerEl) {
 
 	// start drag
 	$scrolled.on('mousedown', function (e) {
-		e.preventDefault();
 		// attach current position as data
 		$scrolled.data('pan', {
 			'pageX': e.pageX,

@@ -74,7 +74,7 @@ function createJobNodeContent(node) {
 	// progress element
 	var progressEl;
 	progressEl = document.createElement('div');
-	progressEl.className = 'progress';
+	progressEl.className = 'job-progress';
 	progressEl.textContent = node.skillsComplete + ' / ' + node.skillsTotal;
 
 	// assembly

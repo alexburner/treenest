@@ -188,7 +188,7 @@ var exampleSkillNode4 = {
                 {
                     "title": "Managing Stakeholders",
                     "type": "Soft Skill",
-                    "level": 2,
+                    "level": 1,
                     "children": [
                         {
                             "subtree": {
@@ -212,6 +212,14 @@ var exampleSkillNode4 = {
                                 ]
                             },
                             "children": [
+                                {
+                                    "title": "Managing Stakeholders",
+                                    "type": "Soft Skill",
+                                    "level": 3,
+                                    "children": [
+
+                                    ]
+                                },
                                 {
                                     "title": "Running Meetings",
                                     "type": "Soft Skill",
@@ -276,7 +284,16 @@ var exampleRootNode = {
                                     "skillsTotal": 6,
                                     "skillset": exampleSkillNode4,
                                     "children": [
+                                        {
+                                            "title": "Project Supervisor III",
+                                            "type": "Hard Skill",
+                                            "skillsComplete": 0,
+                                            "skillsTotal": 6,
+                                            "skillset": exampleSkillNode1,
+                                            "children": [
 
+                                            ]
+                                        }
                                     ]
                                 }
                             ]

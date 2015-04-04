@@ -31,6 +31,7 @@ html, body {
 	min-height: 500px;
 	padding: 75px 0;
 	position: relative;
+	border: 1px solid #CCC;
 	border-radius: 4px;
 	background: #EEE;
 }

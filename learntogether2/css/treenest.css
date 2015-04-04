@@ -7,7 +7,6 @@
 	/* (height adjusts natively) */
 	margin: auto;
 	position: relative;
-	background: #F7F7F7;
 }
 
 .node {
@@ -71,7 +70,7 @@
 
 .scroll-container .zoom-controls {
 	position: absolute;
-	right: 15px;
+	left: 15px;
 	bottom: 15px;
 	z-index: 9000;
 }
@@ -100,40 +99,42 @@
 .shadow-in {
 	position: absolute;
 	z-index: 10000;
+
+	border: 2px solid #777;
 }
 .shadow-in.top {
-	height: 10px;
+	height: 11px;
 	top: -10px;
 	left: 0;
 	right: 0;
-	-webkit-box-shadow: 0 0 10px 0 black;
+/*	-webkit-box-shadow: 0 0 10px 0 black;
 	   -moz-box-shadow: 0 0 10px 0 black;
-	        box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;*/
 }
 .shadow-in.left {
-	width: 10px;
+	width: 11px;
 	top: 0;
 	left: -10px;
 	bottom: 0;
-	-webkit-box-shadow: 0 0 10px 0 black;
+/*	-webkit-box-shadow: 0 0 10px 0 black;
 	   -moz-box-shadow: 0 0 10px 0 black;
-	        box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;*/
 }
 .shadow-in.right {
-	width: 10px;
+	width: 11px;
 	top: 0;
 	right: -10px;
 	bottom: 0;
-	-webkit-box-shadow: 0 0 10px 0 black;
+/*	-webkit-box-shadow: 0 0 10px 0 black;
 	   -moz-box-shadow: 0 0 10px 0 black;
-	        box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;*/
 }
 .shadow-in.bottom {
-	height: 10px;
+	height: 11px;
 	left: 0;
 	right: 0;
 	bottom: -10px;
-	-webkit-box-shadow: 0 0 10px 0 black;
+/*	-webkit-box-shadow: 0 0 10px 0 black;
 	   -moz-box-shadow: 0 0 10px 0 black;
-	        box-shadow: 0 0 10px 0 black;
+	        box-shadow: 0 0 10px 0 black;*/
 }

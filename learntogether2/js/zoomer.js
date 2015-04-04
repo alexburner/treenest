@@ -7,6 +7,10 @@
  */
 function clickToZoom(args) {
 
+	/**
+	 * Variables
+	 */
+
 	var factor = 1;
 	var incFactor = 0.1;
 	var minFactor = 0.3;
@@ -18,26 +22,23 @@ function clickToZoom(args) {
 	var $parent = args.$parent;
 	var $frame = args.$frame;
 
-	// start off with zoom-in disabled
-	$increaseBtn.prop('disabled', true);
+	/**
+	 * Functions
+	 */
 
-	// lock parent size to target size
-	$parent.css({
-		'min-width': $target.outerWidth(),
-		'min-height': $target.outerHeight()
-	});
+	// zoom target in
+	function zoomIn() {
 
-	// increase zoom factor
-	$increaseBtn.on('click', function (e) {
-		e.preventDefault();
 		// halt at limit, or lift opposite limit
 		if ($increaseBtn.prop('disabled')) {
 			return;
 		} else {
 			$decreaseBtn.prop('disabled', false);
 		}
+
 		// update origin
 		setOrigin();
+
 		// update factor
 		factor += incFactor;
 		factor = factor.toFixed(2);
@@ -46,21 +47,25 @@ function clickToZoom(args) {
 			$increaseBtn.prop('disabled', true);
 			factor = maxFactor;
 		}
-		// update zoom
-		setZoom();
-	});
 
-	// decrease zoom factor
-	$decreaseBtn.on('click', function (e) {
-		e.preventDefault();
+		// update scale
+		setScale();
+
+	}
+
+	// zoom target out
+	function zoomOut() {
+
 		// halt at limit, or lift opposite limit
 		if ($decreaseBtn.prop('disabled')) {
 			return;
 		} else {
 			$increaseBtn.prop('disabled', false);
 		}
+
 		// update origin
 		setOrigin();
+
 		// update factor
 		factor -= incFactor;
 		factor = factor.toFixed(2);
@@ -69,11 +74,21 @@ function clickToZoom(args) {
 			$decreaseBtn.prop('disabled', true);
 			factor = minFactor;
 		}
-		// update zoom
-		setZoom();
-	});
+
+		// update scale
+		setScale();
+
+	}
+
+	// set target transform scale
+	function setScale() {
+		$target.css({
+			'transform': 'scale(' + factor + ')'
+		});
+	}
 
 	// set target transform origin
+	// (frame center relative to target position)
 	function setOrigin() {
 		// measure elements
 		var targetOffset = $target.offset();
@@ -98,11 +113,36 @@ function clickToZoom(args) {
 		});
 	}
 
-	// set target transform scale
-	function setZoom() {
-		$target.css({
-			'transform': 'scale(' + factor + ')'
-		});
-	}
+	/**
+	 * Event listeners
+	 */
+
+	 // increase zoom factor
+	$frame.on('dblclick', zoomIn);
+	$increaseBtn.on('click', function (e) {
+		e.preventDefault();
+		$increaseBtn.blur();
+		zoomIn();
+	});
+
+	// decrease zoom factor
+	$decreaseBtn.on('click', function (e) {
+		e.preventDefault();
+		$decreaseBtn.blur();
+		zoomOut();
+	});
+
+	/**
+	 * Actions
+	 */
+
+	// start off with zoom-in disabled
+	$increaseBtn.prop('disabled', true);
+
+	// lock parent size to target size
+	$parent.css({
+		'min-width': $target.outerWidth(),
+		'min-height': $target.outerHeight()
+	});
 
 }

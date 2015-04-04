@@ -47,7 +47,7 @@ a.shape {
 	color: white;
 }
 
-.job .shape .progress {
+.job .shape .job-progress {
 	position: absolute;
 	left: 0;
 	right: 0;
