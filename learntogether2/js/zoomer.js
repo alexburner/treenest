@@ -44,10 +44,6 @@ function clickToZoom(args) {
 		bottom: newBottom + 'px',
 	});
 
-	console.log(scrollbarWidth);
-	console.log(currentBottom);
-	console.log(newBottom);
-
 	/**
 	 * Event listeners
 	 */
