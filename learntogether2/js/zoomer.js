@@ -16,11 +16,56 @@ function clickToZoom(args) {
 	var minFactor = 0.3;
 	var maxFactor = 1;
 
-	var $increaseBtn = args.$controls.find('.zoom-in');
-	var $decreaseBtn = args.$controls.find('.zoom-out');
+	var $controls = args.$controls;
+	var $increaseBtn = $controls.find('.zoom-in');
+	var $decreaseBtn = $controls.find('.zoom-out');
 	var $target = args.$target;
 	var $parent = args.$parent;
 	var $frame = args.$frame;
+
+	/**
+	 * Setup
+	 */
+
+	// start off with zoom-in disabled
+	$increaseBtn.prop('disabled', true);
+
+	// lock parent size to target size
+	$parent.css({
+		'min-width': $target.outerWidth(),
+		'min-height': $target.outerHeight()
+	});
+
+	// move controls
+	var scrollbarWidth = util.getScrollbarWidth();
+	var currentBottom = Number($controls.css('bottom').replace(/px$/, ''));
+	var newBottom = currentBottom + scrollbarWidth;
+	$controls.css({
+		bottom: newBottom + 'px',
+	});
+
+	console.log(scrollbarWidth);
+	console.log(currentBottom);
+	console.log(newBottom);
+
+	/**
+	 * Event listeners
+	 */
+
+	 // zoom ins
+	$frame.on('dblclick', zoomIn);
+	$increaseBtn.on('click', function (e) {
+		e.preventDefault();
+		$increaseBtn.blur();
+		zoomIn();
+	});
+
+	// zoom outs
+	$decreaseBtn.on('click', function (e) {
+		e.preventDefault();
+		$decreaseBtn.blur();
+		zoomOut();
+	});
 
 	/**
 	 * Functions
@@ -112,37 +157,5 @@ function clickToZoom(args) {
 			'transform-origin': x + 'px ' + y + 'px'
 		});
 	}
-
-	/**
-	 * Event listeners
-	 */
-
-	 // increase zoom factor
-	$frame.on('dblclick', zoomIn);
-	$increaseBtn.on('click', function (e) {
-		e.preventDefault();
-		$increaseBtn.blur();
-		zoomIn();
-	});
-
-	// decrease zoom factor
-	$decreaseBtn.on('click', function (e) {
-		e.preventDefault();
-		$decreaseBtn.blur();
-		zoomOut();
-	});
-
-	/**
-	 * Actions
-	 */
-
-	// start off with zoom-in disabled
-	$increaseBtn.prop('disabled', true);
-
-	// lock parent size to target size
-	$parent.css({
-		'min-width': $target.outerWidth(),
-		'min-height': $target.outerHeight()
-	});
 
 }

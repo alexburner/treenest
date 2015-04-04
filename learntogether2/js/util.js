@@ -106,3 +106,31 @@ util.verticallyCenterRelativeElement = function (el) {
 	el.style.top = newTop + 'px';
 
 };
+
+/**
+ * Measure scrollbar width
+ * http://davidwalsh.name/detect-scrollbar-width
+ *
+ * @return {Number}      Calculated width
+ */
+util.getScrollbarWidth = function () {
+
+	// Create the measurement node
+	var el = document.createElement('div');
+	el.style.width = '100px';
+	el.style.height = '100px';
+	el.style.overflow = 'scroll';
+	el.style.position = 'absolute';
+	el.style.top = '-9999px';
+	document.body.appendChild(el);
+
+	// Get the scrollbar width
+	var scrollbarWidth = el.offsetWidth - el.clientWidth;
+
+	// Delete the DIV
+	document.body.removeChild(el);
+
+	// hooray
+	return scrollbarWidth;
+
+};
