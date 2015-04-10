@@ -38,6 +38,7 @@ function dragToScroll(containerEl) {
 
 	// during drag
 	function dragHandler(e) {
+		e.preventDefault();
 		// grab previous position
 		var prev = $scrolled.data('pan');
 		// calculate position change
